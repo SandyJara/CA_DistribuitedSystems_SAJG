@@ -2,9 +2,7 @@ package ds.service1;
 
 import java.io.IOException;
 
-import generated.ds.service1.RequestMessage;
-import generated.ds.service1.ResponseMessage;
-import generated.ds.service1.Service1Grpc.Service1ImplBase;
+import ds.service1.Service1Grpc.Service1ImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -31,17 +29,43 @@ public class Service1 extends Service1ImplBase{
 
 
 	@Override
-	public void service1Do(RequestMessage request, StreamObserver<ResponseMessage> responseObserver) {
+    public StreamObserver<ControlRequest> controlTemperature(StreamObserver<ControlResponse> responseObserver) {
+        return new StreamObserver<ControlRequest>() { //i had to change to streaming consideration
+            @Override
+            public void onNext(ControlRequest request) {
+                int temperature = request.getTemperature();  //declaring temperature as integer
+                String action = determineAction(temperature); // Determine what to do depending on what temperature I have
+                ControlResponse response = ControlResponse.newBuilder().setAction(action).build();
+                responseObserver.onNext(response); // Sending to the client the action executing 
+            }
 
-		//prepare the value to be set back
-		int length = request.getText().length();
-		
-		//preparing the response message
-		ResponseMessage reply = ResponseMessage.newBuilder().setLength(length).build();
+			@Override
+			public void onError(Throwable t) {
+				// TODO Auto-generated method stub
+				
+			}
 
-		responseObserver.onNext( reply ); 
+			@Override
+			public void onCompleted() {
+				// TODO Auto-generated method stub
+				
+			}      
+            
+        };
+    }
 
-		responseObserver.onCompleted();
-
-	}
+    private String determineAction(int temperature) {
+    	String ResponseMessage;
+        if (temperature > 22) {
+        	ResponseMessage = "Decreasing temperature";
+            return ResponseMessage;
+        } else if (temperature < 21) {
+        	ResponseMessage = "Increasing temperature";
+            return ResponseMessage;
+         } else {
+        	 ResponseMessage = "Keeping temperature";
+            return ResponseMessage ;
+        }
+    }
 }
+

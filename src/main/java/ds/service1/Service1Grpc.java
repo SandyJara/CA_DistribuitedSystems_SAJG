@@ -1,4 +1,4 @@
-package generated.ds.service1;
+package ds.service1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
@@ -30,30 +30,30 @@ public final class Service1Grpc {
   public static final String SERVICE_NAME = "service1.Service1";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<generated.ds.service1.ControlRequest,
-      generated.ds.service1.ControlResponse> getControlTemperatureMethod;
+  private static volatile io.grpc.MethodDescriptor<ds.service1.ControlRequest,
+      ds.service1.ControlResponse> getControlTemperatureMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "controlTemperature",
-      requestType = generated.ds.service1.ControlRequest.class,
-      responseType = generated.ds.service1.ControlResponse.class,
+      requestType = ds.service1.ControlRequest.class,
+      responseType = ds.service1.ControlResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<generated.ds.service1.ControlRequest,
-      generated.ds.service1.ControlResponse> getControlTemperatureMethod() {
-    io.grpc.MethodDescriptor<generated.ds.service1.ControlRequest, generated.ds.service1.ControlResponse> getControlTemperatureMethod;
+  public static io.grpc.MethodDescriptor<ds.service1.ControlRequest,
+      ds.service1.ControlResponse> getControlTemperatureMethod() {
+    io.grpc.MethodDescriptor<ds.service1.ControlRequest, ds.service1.ControlResponse> getControlTemperatureMethod;
     if ((getControlTemperatureMethod = Service1Grpc.getControlTemperatureMethod) == null) {
       synchronized (Service1Grpc.class) {
         if ((getControlTemperatureMethod = Service1Grpc.getControlTemperatureMethod) == null) {
           Service1Grpc.getControlTemperatureMethod = getControlTemperatureMethod = 
-              io.grpc.MethodDescriptor.<generated.ds.service1.ControlRequest, generated.ds.service1.ControlResponse>newBuilder()
+              io.grpc.MethodDescriptor.<ds.service1.ControlRequest, ds.service1.ControlResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "service1.Service1", "controlTemperature"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  generated.ds.service1.ControlRequest.getDefaultInstance()))
+                  ds.service1.ControlRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  generated.ds.service1.ControlResponse.getDefaultInstance()))
+                  ds.service1.ControlResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new Service1MethodDescriptorSupplier("controlTemperature"))
                   .build();
           }
@@ -97,8 +97,8 @@ public final class Service1Grpc {
      * Bidirectional streaming RPC for control the temperature.
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<generated.ds.service1.ControlRequest> controlTemperature(
-        io.grpc.stub.StreamObserver<generated.ds.service1.ControlResponse> responseObserver) {
+    public io.grpc.stub.StreamObserver<ds.service1.ControlRequest> controlTemperature(
+        io.grpc.stub.StreamObserver<ds.service1.ControlResponse> responseObserver) {
       return asyncUnimplementedStreamingCall(getControlTemperatureMethod(), responseObserver);
     }
 
@@ -108,8 +108,8 @@ public final class Service1Grpc {
             getControlTemperatureMethod(),
             asyncBidiStreamingCall(
               new MethodHandlers<
-                generated.ds.service1.ControlRequest,
-                generated.ds.service1.ControlResponse>(
+                ds.service1.ControlRequest,
+                ds.service1.ControlResponse>(
                   this, METHODID_CONTROL_TEMPERATURE)))
           .build();
     }
@@ -141,8 +141,8 @@ public final class Service1Grpc {
      * Bidirectional streaming RPC for control the temperature.
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<generated.ds.service1.ControlRequest> controlTemperature(
-        io.grpc.stub.StreamObserver<generated.ds.service1.ControlResponse> responseObserver) {
+    public io.grpc.stub.StreamObserver<ds.service1.ControlRequest> controlTemperature(
+        io.grpc.stub.StreamObserver<ds.service1.ControlResponse> responseObserver) {
       return asyncBidiStreamingCall(
           getChannel().newCall(getControlTemperatureMethod(), getCallOptions()), responseObserver);
     }
@@ -223,7 +223,7 @@ public final class Service1Grpc {
       switch (methodId) {
         case METHODID_CONTROL_TEMPERATURE:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.controlTemperature(
-              (io.grpc.stub.StreamObserver<generated.ds.service1.ControlResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<ds.service1.ControlResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -236,7 +236,7 @@ public final class Service1Grpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return generated.ds.service1.Service1Impl.getDescriptor();
+      return ds.service1.Service1Impl.getDescriptor();
     }
 
     @java.lang.Override

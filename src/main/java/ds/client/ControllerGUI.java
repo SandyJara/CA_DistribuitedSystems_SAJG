@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import generated.ds.service1.ControlRequest;
 import generated.ds.service1.Service1Grpc;
 import generated.ds.service2.ResponseMessage;
 import generated.ds.service2.Service2Grpc;
@@ -151,7 +152,7 @@ public class ControllerGUI implements ActionListener{
 		gui.build();
 	}
 
-	private void build() { 
+	private ControlRequest build() { 
 
 		JFrame frame = new JFrame("Service Controller Sample");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -179,6 +180,7 @@ public class ControllerGUI implements ActionListener{
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
+		return null;
 	}
 
 
@@ -194,17 +196,13 @@ public class ControllerGUI implements ActionListener{
 			/*
 			 * 
 			 */
-			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
-			Service1Grpc.Service1BlockingStub blockingStub = Service1Grpc.newBlockingStub(channel);
+			
 
 			//preparing message to send
-			generated.ds.service1.RequestMessage request = generated.ds.service1.RequestMessage.newBuilder().setText(entry1.getText()).build();
+			System.out.println("let's put all the code here");
 
 			//retrieving reply from service
-			generated.ds.service1.ResponseMessage response = blockingStub.service1Do(request);
-
-			reply1.setText( String.valueOf( response.getLength()) );
-			channel.shutdown();
+			
 		
 		}else if (label.equals("S2:RPC1")) {
 			System.out.println("service 2 to be invoked with " + entry2.getText());
