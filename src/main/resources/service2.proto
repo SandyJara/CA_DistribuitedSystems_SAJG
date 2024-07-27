@@ -9,14 +9,14 @@ package service2;
 // Interface exported by the server.
 service Service2 {
   
-  rpc service2_do(RequestMessage) returns (stream ResponseMessage) {}
+  rpc service2_do(RequestLogIn) returns (stream ResponseLogIn) {}
     
 }
 
-message RequestMessage {
+message RequestLogIn {
   string text = 1;  
 }
 
-message ResponseMessage {
-  int32 length = 1;
+message ResponseLogIn {
+  string message = 1;
 }

@@ -15,15 +15,15 @@ public final class Service2Impl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service2_RequestMessage_descriptor;
+    internal_static_service2_RequestLogIn_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service2_RequestMessage_fieldAccessorTable;
+      internal_static_service2_RequestLogIn_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service2_ResponseMessage_descriptor;
+    internal_static_service2_ResponseLogIn_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service2_ResponseMessage_fieldAccessorTable;
+      internal_static_service2_ResponseLogIn_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -33,12 +33,12 @@ public final class Service2Impl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016service2.proto\022\010service2\"\036\n\016RequestMes" +
-      "sage\022\014\n\004text\030\001 \001(\t\"!\n\017ResponseMessage\022\016\n" +
-      "\006length\030\001 \001(\0052R\n\010Service2\022F\n\013service2_do" +
-      "\022\030.service2.RequestMessage\032\031.service2.Re" +
-      "sponseMessage\"\0000\001B\'\n\025generated.ds.servic" +
-      "e2B\014Service2ImplP\001b\006proto3"
+      "\n\016service2.proto\022\010service2\"\034\n\014RequestLog" +
+      "In\022\014\n\004text\030\001 \001(\t\" \n\rResponseLogIn\022\017\n\007mes" +
+      "sage\030\001 \001(\t2N\n\010Service2\022B\n\013service2_do\022\026." +
+      "service2.RequestLogIn\032\027.service2.Respons" +
+      "eLogIn\"\0000\001B\'\n\025generated.ds.service2B\014Ser" +
+      "vice2ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -52,18 +52,18 @@ public final class Service2Impl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_service2_RequestMessage_descriptor =
+    internal_static_service2_RequestLogIn_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_service2_RequestMessage_fieldAccessorTable = new
+    internal_static_service2_RequestLogIn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service2_RequestMessage_descriptor,
+        internal_static_service2_RequestLogIn_descriptor,
         new java.lang.String[] { "Text", });
-    internal_static_service2_ResponseMessage_descriptor =
+    internal_static_service2_ResponseLogIn_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_service2_ResponseMessage_fieldAccessorTable = new
+    internal_static_service2_ResponseLogIn_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service2_ResponseMessage_descriptor,
-        new java.lang.String[] { "Length", });
+        internal_static_service2_ResponseLogIn_descriptor,
+        new java.lang.String[] { "Message", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

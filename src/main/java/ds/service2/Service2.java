@@ -1,9 +1,10 @@
+
 package ds.service2;
 
 import java.io.IOException;
 
-import generated.ds.service2.RequestMessage;
-import generated.ds.service2.ResponseMessage;
+import generated.ds.service2.RequestLogIn;
+import generated.ds.service2.ResponseLogIn;
 import generated.ds.service2.Service2Grpc.Service2ImplBase; 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -31,23 +32,15 @@ public class Service2 extends Service2ImplBase{
 
 
 	@Override
-	public void service2Do(RequestMessage request, StreamObserver<ResponseMessage> responseObserver) {
+	public void service2Do(RequestLogIn request, StreamObserver<ResponseLogIn> responseObserver) {
 
 		//prepare the value to be set back
-		int length = request.getText().length();
-		
+				
 		//preparing the response message
-		ResponseMessage reply1 = ResponseMessage.newBuilder().setLength(length).build();
+		ResponseLogIn reply1 = ResponseLogIn.newBuilder().setMessage("SESION INICIADA").build();
 
 		responseObserver.onNext( reply1 ); 
-		
-		ResponseMessage reply2 = ResponseMessage.newBuilder().setLength(length).build();
-
-		responseObserver.onNext( reply2 ); 
-		
-		ResponseMessage reply3 = ResponseMessage.newBuilder().setLength(length).build();
-
-		responseObserver.onNext( reply3 ); 
+	
 
 		responseObserver.onCompleted();
 

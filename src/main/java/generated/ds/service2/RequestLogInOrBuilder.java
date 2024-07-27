@@ -3,8 +3,8 @@
 
 package generated.ds.service2;
 
-public interface RequestMessageOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:service2.RequestMessage)
+public interface RequestLogInOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:service2.RequestLogIn)
     com.google.protobuf.MessageOrBuilder {
 
   /**

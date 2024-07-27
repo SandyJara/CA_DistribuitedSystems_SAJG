@@ -4,19 +4,19 @@
 package generated.ds.service2;
 
 /**
- * Protobuf type {@code service2.RequestMessage}
+ * Protobuf type {@code service2.ResponseLogIn}
  */
-public  final class RequestMessage extends
+public  final class ResponseLogIn extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:service2.RequestMessage)
-    RequestMessageOrBuilder {
+    // @@protoc_insertion_point(message_implements:service2.ResponseLogIn)
+    ResponseLogInOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use RequestMessage.newBuilder() to construct.
-  private RequestMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use ResponseLogIn.newBuilder() to construct.
+  private ResponseLogIn(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private RequestMessage() {
-    text_ = "";
+  private ResponseLogIn() {
+    message_ = "";
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private RequestMessage(
+  private ResponseLogIn(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            text_ = s;
+            message_ = s;
             break;
           }
           default: {
@@ -70,45 +70,45 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return generated.ds.service2.Service2Impl.internal_static_service2_RequestMessage_descriptor;
+    return generated.ds.service2.Service2Impl.internal_static_service2_ResponseLogIn_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return generated.ds.service2.Service2Impl.internal_static_service2_RequestMessage_fieldAccessorTable
+    return generated.ds.service2.Service2Impl.internal_static_service2_ResponseLogIn_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            generated.ds.service2.RequestMessage.class, generated.ds.service2.RequestMessage.Builder.class);
+            generated.ds.service2.ResponseLogIn.class, generated.ds.service2.ResponseLogIn.Builder.class);
   }
 
-  public static final int TEXT_FIELD_NUMBER = 1;
-  private volatile java.lang.Object text_;
+  public static final int MESSAGE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object message_;
   /**
-   * <code>string text = 1;</code>
+   * <code>string message = 1;</code>
    */
-  public java.lang.String getText() {
-    java.lang.Object ref = text_;
+  public java.lang.String getMessage() {
+    java.lang.Object ref = message_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      text_ = s;
+      message_ = s;
       return s;
     }
   }
   /**
-   * <code>string text = 1;</code>
+   * <code>string message = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getTextBytes() {
-    java.lang.Object ref = text_;
+      getMessageBytes() {
+    java.lang.Object ref = message_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      text_ = b;
+      message_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -129,8 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getTextBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, text_);
+    if (!getMessageBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getTextBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, text_);
+    if (!getMessageBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -154,14 +154,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof generated.ds.service2.RequestMessage)) {
+    if (!(obj instanceof generated.ds.service2.ResponseLogIn)) {
       return super.equals(obj);
     }
-    generated.ds.service2.RequestMessage other = (generated.ds.service2.RequestMessage) obj;
+    generated.ds.service2.ResponseLogIn other = (generated.ds.service2.ResponseLogIn) obj;
 
     boolean result = true;
-    result = result && getText()
-        .equals(other.getText());
+    result = result && getMessage()
+        .equals(other.getMessage());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -173,76 +173,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TEXT_FIELD_NUMBER;
-    hash = (53 * hash) + getText().hashCode();
+    hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+    hash = (53 * hash) + getMessage().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(byte[] data)
+  public static generated.ds.service2.ResponseLogIn parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(java.io.InputStream input)
+  public static generated.ds.service2.ResponseLogIn parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static generated.ds.service2.RequestMessage parseDelimitedFrom(java.io.InputStream input)
+  public static generated.ds.service2.ResponseLogIn parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static generated.ds.service2.RequestMessage parseDelimitedFrom(
+  public static generated.ds.service2.ResponseLogIn parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static generated.ds.service2.RequestMessage parseFrom(
+  public static generated.ds.service2.ResponseLogIn parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -255,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(generated.ds.service2.RequestMessage prototype) {
+  public static Builder newBuilder(generated.ds.service2.ResponseLogIn prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -271,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code service2.RequestMessage}
+   * Protobuf type {@code service2.ResponseLogIn}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:service2.RequestMessage)
-      generated.ds.service2.RequestMessageOrBuilder {
+      // @@protoc_insertion_point(builder_implements:service2.ResponseLogIn)
+      generated.ds.service2.ResponseLogInOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return generated.ds.service2.Service2Impl.internal_static_service2_RequestMessage_descriptor;
+      return generated.ds.service2.Service2Impl.internal_static_service2_ResponseLogIn_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return generated.ds.service2.Service2Impl.internal_static_service2_RequestMessage_fieldAccessorTable
+      return generated.ds.service2.Service2Impl.internal_static_service2_ResponseLogIn_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              generated.ds.service2.RequestMessage.class, generated.ds.service2.RequestMessage.Builder.class);
+              generated.ds.service2.ResponseLogIn.class, generated.ds.service2.ResponseLogIn.Builder.class);
     }
 
-    // Construct using generated.ds.service2.RequestMessage.newBuilder()
+    // Construct using generated.ds.service2.ResponseLogIn.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -308,7 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      text_ = "";
+      message_ = "";
 
       return this;
     }
@@ -316,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return generated.ds.service2.Service2Impl.internal_static_service2_RequestMessage_descriptor;
+      return generated.ds.service2.Service2Impl.internal_static_service2_ResponseLogIn_descriptor;
     }
 
     @java.lang.Override
-    public generated.ds.service2.RequestMessage getDefaultInstanceForType() {
-      return generated.ds.service2.RequestMessage.getDefaultInstance();
+    public generated.ds.service2.ResponseLogIn getDefaultInstanceForType() {
+      return generated.ds.service2.ResponseLogIn.getDefaultInstance();
     }
 
     @java.lang.Override
-    public generated.ds.service2.RequestMessage build() {
-      generated.ds.service2.RequestMessage result = buildPartial();
+    public generated.ds.service2.ResponseLogIn build() {
+      generated.ds.service2.ResponseLogIn result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -334,9 +334,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public generated.ds.service2.RequestMessage buildPartial() {
-      generated.ds.service2.RequestMessage result = new generated.ds.service2.RequestMessage(this);
-      result.text_ = text_;
+    public generated.ds.service2.ResponseLogIn buildPartial() {
+      generated.ds.service2.ResponseLogIn result = new generated.ds.service2.ResponseLogIn(this);
+      result.message_ = message_;
       onBuilt();
       return result;
     }
@@ -375,18 +375,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof generated.ds.service2.RequestMessage) {
-        return mergeFrom((generated.ds.service2.RequestMessage)other);
+      if (other instanceof generated.ds.service2.ResponseLogIn) {
+        return mergeFrom((generated.ds.service2.ResponseLogIn)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(generated.ds.service2.RequestMessage other) {
-      if (other == generated.ds.service2.RequestMessage.getDefaultInstance()) return this;
-      if (!other.getText().isEmpty()) {
-        text_ = other.text_;
+    public Builder mergeFrom(generated.ds.service2.ResponseLogIn other) {
+      if (other == generated.ds.service2.ResponseLogIn.getDefaultInstance()) return this;
+      if (!other.getMessage().isEmpty()) {
+        message_ = other.message_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -404,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      generated.ds.service2.RequestMessage parsedMessage = null;
+      generated.ds.service2.ResponseLogIn parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (generated.ds.service2.RequestMessage) e.getUnfinishedMessage();
+        parsedMessage = (generated.ds.service2.ResponseLogIn) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -418,71 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object text_ = "";
+    private java.lang.Object message_ = "";
     /**
-     * <code>string text = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public java.lang.String getText() {
-      java.lang.Object ref = text_;
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        text_ = s;
+        message_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string message = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getTextBytes() {
-      java.lang.Object ref = text_;
+        getMessageBytes() {
+      java.lang.Object ref = message_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        text_ = b;
+        message_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public Builder setText(
+    public Builder setMessage(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      text_ = value;
+      message_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public Builder clearText() {
+    public Builder clearMessage() {
       
-      text_ = getDefaultInstance().getText();
+      message_ = getDefaultInstance().getMessage();
       onChanged();
       return this;
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public Builder setTextBytes(
+    public Builder setMessageBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      text_ = value;
+      message_ = value;
       onChanged();
       return this;
     }
@@ -499,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:service2.RequestMessage)
+    // @@protoc_insertion_point(builder_scope:service2.ResponseLogIn)
   }
 
-  // @@protoc_insertion_point(class_scope:service2.RequestMessage)
-  private static final generated.ds.service2.RequestMessage DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:service2.ResponseLogIn)
+  private static final generated.ds.service2.ResponseLogIn DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new generated.ds.service2.RequestMessage();
+    DEFAULT_INSTANCE = new generated.ds.service2.ResponseLogIn();
   }
 
-  public static generated.ds.service2.RequestMessage getDefaultInstance() {
+  public static generated.ds.service2.ResponseLogIn getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<RequestMessage>
-      PARSER = new com.google.protobuf.AbstractParser<RequestMessage>() {
+  private static final com.google.protobuf.Parser<ResponseLogIn>
+      PARSER = new com.google.protobuf.AbstractParser<ResponseLogIn>() {
     @java.lang.Override
-    public RequestMessage parsePartialFrom(
+    public ResponseLogIn parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new RequestMessage(input, extensionRegistry);
+      return new ResponseLogIn(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<RequestMessage> parser() {
+  public static com.google.protobuf.Parser<ResponseLogIn> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<RequestMessage> getParserForType() {
+  public com.google.protobuf.Parser<ResponseLogIn> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public generated.ds.service2.RequestMessage getDefaultInstanceForType() {
+  public generated.ds.service2.ResponseLogIn getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -30,30 +30,30 @@ public final class Service2Grpc {
   public static final String SERVICE_NAME = "service2.Service2";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<generated.ds.service2.RequestMessage,
-      generated.ds.service2.ResponseMessage> getService2DoMethod;
+  private static volatile io.grpc.MethodDescriptor<generated.ds.service2.RequestLogIn,
+      generated.ds.service2.ResponseLogIn> getService2DoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "service2_do",
-      requestType = generated.ds.service2.RequestMessage.class,
-      responseType = generated.ds.service2.ResponseMessage.class,
+      requestType = generated.ds.service2.RequestLogIn.class,
+      responseType = generated.ds.service2.ResponseLogIn.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<generated.ds.service2.RequestMessage,
-      generated.ds.service2.ResponseMessage> getService2DoMethod() {
-    io.grpc.MethodDescriptor<generated.ds.service2.RequestMessage, generated.ds.service2.ResponseMessage> getService2DoMethod;
+  public static io.grpc.MethodDescriptor<generated.ds.service2.RequestLogIn,
+      generated.ds.service2.ResponseLogIn> getService2DoMethod() {
+    io.grpc.MethodDescriptor<generated.ds.service2.RequestLogIn, generated.ds.service2.ResponseLogIn> getService2DoMethod;
     if ((getService2DoMethod = Service2Grpc.getService2DoMethod) == null) {
       synchronized (Service2Grpc.class) {
         if ((getService2DoMethod = Service2Grpc.getService2DoMethod) == null) {
           Service2Grpc.getService2DoMethod = getService2DoMethod = 
-              io.grpc.MethodDescriptor.<generated.ds.service2.RequestMessage, generated.ds.service2.ResponseMessage>newBuilder()
+              io.grpc.MethodDescriptor.<generated.ds.service2.RequestLogIn, generated.ds.service2.ResponseLogIn>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "service2.Service2", "service2_do"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  generated.ds.service2.RequestMessage.getDefaultInstance()))
+                  generated.ds.service2.RequestLogIn.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  generated.ds.service2.ResponseMessage.getDefaultInstance()))
+                  generated.ds.service2.ResponseLogIn.getDefaultInstance()))
                   .setSchemaDescriptor(new Service2MethodDescriptorSupplier("service2_do"))
                   .build();
           }
@@ -94,8 +94,8 @@ public final class Service2Grpc {
 
     /**
      */
-    public void service2Do(generated.ds.service2.RequestMessage request,
-        io.grpc.stub.StreamObserver<generated.ds.service2.ResponseMessage> responseObserver) {
+    public void service2Do(generated.ds.service2.RequestLogIn request,
+        io.grpc.stub.StreamObserver<generated.ds.service2.ResponseLogIn> responseObserver) {
       asyncUnimplementedUnaryCall(getService2DoMethod(), responseObserver);
     }
 
@@ -105,8 +105,8 @@ public final class Service2Grpc {
             getService2DoMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                generated.ds.service2.RequestMessage,
-                generated.ds.service2.ResponseMessage>(
+                generated.ds.service2.RequestLogIn,
+                generated.ds.service2.ResponseLogIn>(
                   this, METHODID_SERVICE2_DO)))
           .build();
     }
@@ -135,8 +135,8 @@ public final class Service2Grpc {
 
     /**
      */
-    public void service2Do(generated.ds.service2.RequestMessage request,
-        io.grpc.stub.StreamObserver<generated.ds.service2.ResponseMessage> responseObserver) {
+    public void service2Do(generated.ds.service2.RequestLogIn request,
+        io.grpc.stub.StreamObserver<generated.ds.service2.ResponseLogIn> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getService2DoMethod(), getCallOptions()), request, responseObserver);
     }
@@ -165,8 +165,8 @@ public final class Service2Grpc {
 
     /**
      */
-    public java.util.Iterator<generated.ds.service2.ResponseMessage> service2Do(
-        generated.ds.service2.RequestMessage request) {
+    public java.util.Iterator<generated.ds.service2.ResponseLogIn> service2Do(
+        generated.ds.service2.RequestLogIn request) {
       return blockingServerStreamingCall(
           getChannel(), getService2DoMethod(), getCallOptions(), request);
     }
@@ -214,8 +214,8 @@ public final class Service2Grpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SERVICE2_DO:
-          serviceImpl.service2Do((generated.ds.service2.RequestMessage) request,
-              (io.grpc.stub.StreamObserver<generated.ds.service2.ResponseMessage>) responseObserver);
+          serviceImpl.service2Do((generated.ds.service2.RequestLogIn) request,
+              (io.grpc.stub.StreamObserver<generated.ds.service2.ResponseLogIn>) responseObserver);
           break;
         default:
           throw new AssertionError();

@@ -37,8 +37,11 @@ public class Service1 extends Service1ImplBase{
                 String action = determineAction(temperature); // Determine what to do depending on what temperature I have
                 ControlResponse response = ControlResponse.newBuilder().setAction(action).build();
                 responseObserver.onNext(response); // Sending to the client the action executing 
+          
+             
             }
-
+            
+       
 			@Override
 			public void onError(Throwable t) {
 				// TODO Auto-generated method stub
@@ -50,10 +53,13 @@ public class Service1 extends Service1ImplBase{
 				// TODO Auto-generated method stub
 				
 			}      
-            
+			
+			  
         };
     }
 
+	
+	
     private String determineAction(int temperature) {
     	String ResponseMessage;
         if (temperature > 22) {
