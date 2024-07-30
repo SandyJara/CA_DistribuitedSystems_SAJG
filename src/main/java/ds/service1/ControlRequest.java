@@ -273,7 +273,7 @@ private static final long serialVersionUID = 0L;
               ds.service1.ControlRequest.class, ds.service1.ControlRequest.Builder.class);
     }
 
-    // Construct using generated.ds.service1.ControlRequest.newBuilder()
+    // Construct using ds.service1.ControlRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }

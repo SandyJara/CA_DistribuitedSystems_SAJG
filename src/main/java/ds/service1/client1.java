@@ -8,10 +8,11 @@ import java.util.logging.Logger;
 
 import ds.service1.client1;
 import ds.service1.Service1Grpc.Service1Stub;
-import ds.service1.Service1Grpc.Service1Stub;
+import ds.service1.Service1Grpc.Service1BlockingStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
+
 
 public class client1 {
 
@@ -72,5 +73,49 @@ public class client1 {
 	        } else {
 	            return "SUCCESSFUL Temperature Control";
 	        }
+	    }
+	    
+	    
+	    //Starting my second method here for the lights
+	    
+	    public static String controlLights(boolean turnOn) {
+	    	
+	    	 String host = "localhost";
+	         int port = 50051;
+
+	         ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
+	                 .usePlaintext()
+	                 .build();
+
+	         Service1BlockingStub blockingStub = Service1Grpc.newBlockingStub(channel);
+
+	    	
+	    	
+	        LightRequest request = LightRequest.newBuilder().setTurnOn(turnOn).build();
+	        LightResponse response;
+	        try {
+	            response = blockingStub.controlLights(request);
+	            String status = response.getStatus();
+	            logger.info("Server response: " + response.getStatus());
+	            return status;
+	        } catch (Exception e) {
+	            logger.log(Level.SEVERE, "Light control failed", e);
+	            return "light control failed";
+	        }finally {
+	        	channel.shutdown();
+	        }
+	    }
+
+	    public static void main(String[] args) throws InterruptedException {
+	        String temperatureResult = startTemperatureControl();
+	        logger.info("Temperature Control Result: " + temperatureResult);
+	        
+	        Thread.sleep(5000);
+	        
+	        controlLights(true);  // Turn lights on
+	        Thread.sleep(5000);
+	        
+	        controlLights(false); // Turn lights off
+	        Thread.sleep(5000);
 	    }
 	}

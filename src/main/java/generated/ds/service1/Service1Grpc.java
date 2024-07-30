@@ -62,6 +62,38 @@ public final class Service1Grpc {
      return getControlTemperatureMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<generated.ds.service1.LightRequest,
+      generated.ds.service1.LightResponse> getControlLightsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ControlLights",
+      requestType = generated.ds.service1.LightRequest.class,
+      responseType = generated.ds.service1.LightResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<generated.ds.service1.LightRequest,
+      generated.ds.service1.LightResponse> getControlLightsMethod() {
+    io.grpc.MethodDescriptor<generated.ds.service1.LightRequest, generated.ds.service1.LightResponse> getControlLightsMethod;
+    if ((getControlLightsMethod = Service1Grpc.getControlLightsMethod) == null) {
+      synchronized (Service1Grpc.class) {
+        if ((getControlLightsMethod = Service1Grpc.getControlLightsMethod) == null) {
+          Service1Grpc.getControlLightsMethod = getControlLightsMethod = 
+              io.grpc.MethodDescriptor.<generated.ds.service1.LightRequest, generated.ds.service1.LightResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "service1.Service1", "ControlLights"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  generated.ds.service1.LightRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  generated.ds.service1.LightResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new Service1MethodDescriptorSupplier("ControlLights"))
+                  .build();
+          }
+        }
+     }
+     return getControlLightsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -102,6 +134,16 @@ public final class Service1Grpc {
       return asyncUnimplementedStreamingCall(getControlTemperatureMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     * Unary RPC for turning lights on and off.
+     * </pre>
+     */
+    public void controlLights(generated.ds.service1.LightRequest request,
+        io.grpc.stub.StreamObserver<generated.ds.service1.LightResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getControlLightsMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -111,6 +153,13 @@ public final class Service1Grpc {
                 generated.ds.service1.ControlRequest,
                 generated.ds.service1.ControlResponse>(
                   this, METHODID_CONTROL_TEMPERATURE)))
+          .addMethod(
+            getControlLightsMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                generated.ds.service1.LightRequest,
+                generated.ds.service1.LightResponse>(
+                  this, METHODID_CONTROL_LIGHTS)))
           .build();
     }
   }
@@ -146,6 +195,17 @@ public final class Service1Grpc {
       return asyncBidiStreamingCall(
           getChannel().newCall(getControlTemperatureMethod(), getCallOptions()), responseObserver);
     }
+
+    /**
+     * <pre>
+     * Unary RPC for turning lights on and off.
+     * </pre>
+     */
+    public void controlLights(generated.ds.service1.LightRequest request,
+        io.grpc.stub.StreamObserver<generated.ds.service1.LightResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getControlLightsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -167,6 +227,16 @@ public final class Service1Grpc {
     protected Service1BlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new Service1BlockingStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     * Unary RPC for turning lights on and off.
+     * </pre>
+     */
+    public generated.ds.service1.LightResponse controlLights(generated.ds.service1.LightRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getControlLightsMethod(), getCallOptions(), request);
     }
   }
 
@@ -190,9 +260,21 @@ public final class Service1Grpc {
         io.grpc.CallOptions callOptions) {
       return new Service1FutureStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     * Unary RPC for turning lights on and off.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<generated.ds.service1.LightResponse> controlLights(
+        generated.ds.service1.LightRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getControlLightsMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_CONTROL_TEMPERATURE = 0;
+  private static final int METHODID_CONTROL_LIGHTS = 0;
+  private static final int METHODID_CONTROL_TEMPERATURE = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -211,6 +293,10 @@ public final class Service1Grpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_CONTROL_LIGHTS:
+          serviceImpl.controlLights((generated.ds.service1.LightRequest) request,
+              (io.grpc.stub.StreamObserver<generated.ds.service1.LightResponse>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -276,6 +362,7 @@ public final class Service1Grpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new Service1FileDescriptorSupplier())
               .addMethod(getControlTemperatureMethod())
+              .addMethod(getControlLightsMethod())
               .build();
         }
       }

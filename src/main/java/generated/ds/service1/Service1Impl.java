@@ -24,6 +24,16 @@ public final class Service1Impl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_service1_ControlResponse_fieldAccessorTable;
+  public static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service1_LightRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service1_LightRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service1_LightResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service1_LightResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,11 +45,14 @@ public final class Service1Impl {
     java.lang.String[] descriptorData = {
       "\n\016service1.proto\022\010service1\"%\n\016ControlReq" +
       "uest\022\023\n\013temperature\030\001 \001(\005\"!\n\017ControlResp" +
-      "onse\022\016\n\006action\030\001 \001(\t2[\n\010Service1\022O\n\022cont" +
-      "rolTemperature\022\030.service1.ControlRequest" +
-      "\032\031.service1.ControlResponse\"\000(\0010\001B\'\n\025gen" +
-      "erated.ds.service1B\014Service1ImplP\001b\006prot" +
-      "o3"
+      "onse\022\016\n\006action\030\001 \001(\t\"\036\n\014LightRequest\022\016\n\006" +
+      "turnOn\030\001 \001(\010\"\037\n\rLightResponse\022\016\n\006status\030" +
+      "\001 \001(\t2\237\001\n\010Service1\022O\n\022controlTemperature" +
+      "\022\030.service1.ControlRequest\032\031.service1.Co" +
+      "ntrolResponse\"\000(\0010\001\022B\n\rControlLights\022\026.s" +
+      "ervice1.LightRequest\032\027.service1.LightRes" +
+      "ponse\"\000B\'\n\025generated.ds.service1B\014Servic" +
+      "e1ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -65,6 +78,18 @@ public final class Service1Impl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_service1_ControlResponse_descriptor,
         new java.lang.String[] { "Action", });
+    internal_static_service1_LightRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_service1_LightRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service1_LightRequest_descriptor,
+        new java.lang.String[] { "TurnOn", });
+    internal_static_service1_LightResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_service1_LightResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service1_LightResponse_descriptor,
+        new java.lang.String[] { "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

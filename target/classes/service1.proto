@@ -1,19 +1,18 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "generated.ds.service1";
+option java_package = "ds.service1";
 option java_outer_classname = "Service1Impl";
 
 package service1;
-
-// Interface exported by the server.
-//service Service1 {----------------------to validate if I need to change the name of service to  AirConditioning as before
-
 
 // Air Conditioning service definition.
 service Service1 {
   // Bidirectional streaming RPC for control the temperature.
   rpc controlTemperature(stream ControlRequest) returns (stream ControlResponse) {}
+
+  // Unary RPC for turning lights on and off.
+  rpc ControlLights(LightRequest) returns (LightResponse) {}
 }
 
 // Request message for controlling temperature.
@@ -23,5 +22,15 @@ message ControlRequest {
 
 // Response message for temperature control.
 message ControlResponse {
-  string action = 1; // I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+  string action = 1; // "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+}
+
+// Request message for controlling lights.
+message LightRequest {
+  bool turnOn = 1; // true to turn on the lights, false to turn off the lights
+}
+
+// Response message for light control.
+message LightResponse {
+  string status = 1; // "Lights are turned on" or "Lights are turned off"
 }

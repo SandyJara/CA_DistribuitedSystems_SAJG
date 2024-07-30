@@ -9,7 +9,7 @@ public interface ControlResponseOrBuilder extends
 
   /**
    * <pre>
-   * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+   * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
    * </pre>
    *
    * <code>string action = 1;</code>
@@ -17,7 +17,7 @@ public interface ControlResponseOrBuilder extends
   java.lang.String getAction();
   /**
    * <pre>
-   * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+   * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
    * </pre>
    *
    * <code>string action = 1;</code>

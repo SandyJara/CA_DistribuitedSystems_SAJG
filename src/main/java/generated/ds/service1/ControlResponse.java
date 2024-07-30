@@ -89,7 +89,7 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object action_;
   /**
    * <pre>
-   * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+   * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
    * </pre>
    *
    * <code>string action = 1;</code>
@@ -108,7 +108,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+   * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
    * </pre>
    *
    * <code>string action = 1;</code>
@@ -437,7 +437,7 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object action_ = "";
     /**
      * <pre>
-     * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+     * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
      * </pre>
      *
      * <code>string action = 1;</code>
@@ -456,7 +456,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+     * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
      * </pre>
      *
      * <code>string action = 1;</code>
@@ -476,7 +476,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+     * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
      * </pre>
      *
      * <code>string action = 1;</code>
@@ -493,7 +493,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+     * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
      * </pre>
      *
      * <code>string action = 1;</code>
@@ -506,7 +506,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * I will add with my conditions the option of: "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
+     * "Decreasing temperature", "Increasing temperature", or "Keeping temperature"
      * </pre>
      *
      * <code>string action = 1;</code>

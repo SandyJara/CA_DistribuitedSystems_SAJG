@@ -58,7 +58,20 @@ public class Service1 extends Service1ImplBase{
         };
     }
 
+	//For the lights 
+	 @Override
+	    public void controlLights(LightRequest request, StreamObserver<LightResponse> responseObserver) {
+	        boolean turnOn = request.getTurnOn();
+	        String status = turnOn ? "Lights are turned on" : "Lights are turned off";
+	        LightResponse response = LightResponse.newBuilder().setStatus(status).build();
+	        responseObserver.onNext(response);
+	        responseObserver.onCompleted();
+	    }
+
+
 	
+	
+	//making the actions to take in the control temperature
 	
     private String determineAction(int temperature) {
     	String ResponseMessage;
