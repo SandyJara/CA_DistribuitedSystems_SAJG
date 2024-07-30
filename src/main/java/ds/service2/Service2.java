@@ -3,9 +3,9 @@ package ds.service2;
 
 import java.io.IOException;
 
-import generated.ds.service2.RequestLogIn;
-import generated.ds.service2.ResponseLogIn;
-import generated.ds.service2.Service2Grpc.Service2ImplBase; 
+import ds.service2.LogInRequest;
+import ds.service2.LogInResponse;
+import ds.service2.Service2Grpc.Service2ImplBase; 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -30,19 +30,29 @@ public class Service2 extends Service2ImplBase{
 		server.awaitTermination();
 	}
 
+@Override 
+	public void logIn(LogInRequest request, StreamObserver<LogInResponse> responseObserver) {
 
-	@Override
-	public void service2Do(RequestLogIn request, StreamObserver<ResponseLogIn> responseObserver) {
-
-		//prepare the value to be set back
-				
-		//preparing the response message
-		ResponseLogIn reply1 = ResponseLogIn.newBuilder().setMessage("SESION INICIADA").build();
-
-		responseObserver.onNext( reply1 ); 
-	
-
-		responseObserver.onCompleted();
+		String name = request.getName();
+        String password = request.getPassword();
+		
+       // This to give message for the status
+        String status;
+        
+     // Perform login validation
+		   if (name == null || name.isEmpty() || password == null || password.isEmpty()) {
+		      status = "Some information is missed to be able to Log In";
+		   } else {
+		       status = "Login successful";
+		          
+		   }    
+        
+		   // Preparing and sending the response message
+	        LogInResponse reply = LogInResponse.newBuilder().setStatus(status).build();
+	        responseObserver.onNext(reply);
+	        responseObserver.onCompleted();
 
 	}
+
+
 }
