@@ -17,6 +17,7 @@ import java.awt.Color;
 import ds.service1.client1;//creating this and the next 3 lines to read my client1 class from the other package
 import ds.service2.client2;
 import ds.service2.updateProfileRequest;
+import ds.service2.updateProfileResponse;
 import ds.service1.ControlRequest;
 import ds.service1.ControlResponse;
 import io.grpc.stub.StreamObserver;
@@ -92,7 +93,7 @@ public class GuiCA extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("SERVICE 3");
 		lblNewLabel_2.setForeground(new Color(128, 0, 0));
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel_2.setBounds(33, 453, 98, 13);
+		lblNewLabel_2.setBounds(33, 466, 98, 13);
 		contentPane.add(lblNewLabel_2);
 		
 		JButton ButtonTemperature = new JButton("START");
@@ -195,12 +196,27 @@ public class GuiCA extends JFrame {
 		JButton btnNewButton_UpdateProfile = new JButton("UPDATE");
 		btnNewButton_UpdateProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				//Here was just for testing with data to print in the properly field, the method has been called after click the button but was printing nothing of the information introduce in the field camps
+		        // String testResponse = "Name TESTING";
+		       //  textField_UpdateResponse.setText("Update response: " + testResponse);
+			
+				System.out.println("Update button clicked."); // to test if recognising the action
 					String name = textField_nameUpdate.getText();
 	                String password = textField_passwordUpdate.getText();
 	                String status = textField_statusProfileToUpdate.getText();
 	                String address = textField_address.getText();
 	                String phone = textField_phone.getText();
 
+	             // Debug: Print field values
+	                System.out.println("Name: " + name);
+	                System.out.println("Password: " + password);
+	                System.out.println("Status: " + status);
+	                System.out.println("Address: " + address);
+	                System.out.println("Phone: " + phone);
+	                
+	                
 	                // Create UpdateProfileRequest(s)
 	                updateProfileRequest.Builder builder = updateProfileRequest.newBuilder();
 	                if (!name.isEmpty()) builder.setName(name);
@@ -211,15 +227,31 @@ public class GuiCA extends JFrame {
 
 	                updateProfileRequest request = builder.build();
 
-	                // Send the request of the profile update
-	                client2.updateProfile(List.of(request));
-	                textField_UpdateResponse.setText("Profile update requested.");
-				
-			}
-		});
+	             // Create a list of requests
+	                List<updateProfileRequest> requests = List.of(request);
+
+	                // just showing that the info was sent to update
+	                textField_UpdateResponse.setText("information sended to Update");
+
+	                // with this is possible to update the answer showed once the information was updates
+	                new Thread(() -> {
+	                    // showing my message response after the updating of the information
+	                    String responseMessage = ds.service2.client2.updateProfile(requests, null);
+
+	                    SwingUtilities.invokeLater(() -> {
+	                        textField_UpdateResponse.setText(responseMessage);
+	                    });
+
+	                    System.out.println("Profile update request sent.");
+	                }).start();
+	            }
+	        });
+	                
+	                
+	                
 		btnNewButton_UpdateProfile.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_UpdateProfile.setBackground(new Color(168, 51, 159));
-		btnNewButton_UpdateProfile.setBounds(438, 396, 85, 21);
+		btnNewButton_UpdateProfile.setBounds(438, 365, 85, 21);
 		contentPane.add(btnNewButton_UpdateProfile);
 		
 		textField_nameUpdate = new JTextField();
@@ -354,7 +386,7 @@ public class GuiCA extends JFrame {
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(UIManager.getColor("Button.shadow"));
 		separator_1.setBackground(new Color(0, 0, 160));
-		separator_1.setBounds(10, 440, 639, 3);
+		separator_1.setBounds(10, 451, 639, 3);
 		contentPane.add(separator_1);
 		
 		textField_statusProfileToUpdate = new JTextField();
@@ -365,7 +397,7 @@ public class GuiCA extends JFrame {
 		
 		textField_UpdateResponse = new JTextField();
 		textField_UpdateResponse.setColumns(10);
-		textField_UpdateResponse.setBounds(533, 373, 116, 44);
+		textField_UpdateResponse.setBounds(438, 399, 222, 44);
 		contentPane.add(textField_UpdateResponse);
 		
 		JSeparator separator_1_1_1 = new JSeparator();

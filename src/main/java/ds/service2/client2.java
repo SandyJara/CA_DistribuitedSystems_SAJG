@@ -2,7 +2,8 @@ package ds.service2;
 
 
 	import java.util.List;
-	import java.util.concurrent.TimeUnit;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 	import java.util.logging.Level;
 	import java.util.logging.Logger;
 
@@ -51,7 +52,8 @@ package ds.service2;
 		    }
 		    
 		    //Starting my second method here for the update of the information
-		    public static void updateProfile(List<updateProfileRequest> requests) {
+		    public static String updateProfile(List<updateProfileRequest> requests, StreamObserver<updateProfileResponse> streamObserver) {
+		        System.out.println("updateProfile method called.");
 		        String host = "localhost";
 		        int port = 50052;
 
@@ -61,24 +63,37 @@ package ds.service2;
 
 		        Service2Grpc.Service2Stub asyncStub = Service2Grpc.newStub(channel);
 
-		        StreamObserver<updateProfileRequest> requestObserver = asyncStub.updateProfile(new StreamObserver<updateProfileResponse>() {
+		        StringBuilder responseBuilderUpdateProfile = new StringBuilder();
+		        CountDownLatch finishLatch = new CountDownLatch(1);
+		        
+		        
+		        StreamObserver<updateProfileResponse> responseObserver = new StreamObserver<updateProfileResponse>() {
 		            @Override
 		            public void onNext(updateProfileResponse response) {
-		                System.out.println("Update response: " + response.getStatus());
+		                System.out.println("Received response: " + response.getStatus());  // TESTING that is updating
+		                responseBuilderUpdateProfile.append("Update response: ").append(response.getStatus()).append("\n");
+		              
 		            }
 
 		            @Override
 		            public void onError(Throwable t) {
-		                logger.log(Level.SEVERE, "Update profile failed", t);
+		                System.err.println("Update profile failed: " + t.getMessage());  // TESTING 
+		                responseBuilderUpdateProfile.append("Update profile failed: ").append(t.getMessage()).append("\n");
+		                finishLatch.countDown(); // Signal completion
 		            }
 
 		            @Override
 		            public void onCompleted() {
-		                System.out.println("Profile update completed.");
-		                channel.shutdownNow();
+		            	System.out.println("Profile update completed.");  // TEST
+		            	//String completedUpdate = "Profile update completed."; 
+		                responseBuilderUpdateProfile.append("Profile update completed.\n");
+		                finishLatch.countDown(); // Signal completion
 		            }
-		        });
+		        };
 
+		        StreamObserver<updateProfileRequest> requestObserver = asyncStub.updateProfile(responseObserver);
+
+		        
 		        try {
 		            for (updateProfileRequest request : requests) {
 		                requestObserver.onNext(request);
@@ -88,8 +103,25 @@ package ds.service2;
 		            requestObserver.onError(e);
 		            throw e;
 		        }
+
+		        try {
+		            channel.awaitTermination(1, TimeUnit.MINUTES);
+		        } catch (InterruptedException e) {
+		            System.err.println("Thread interrupted: " + e.getMessage());  // Debug statement
+		        }
+
+		        return responseBuilderUpdateProfile.toString();
 		    }
-	}
-		    
-		    
+
+			public String getCompletedUpdate() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			public void setCompletedUpdate(String status) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
+		     
 		   
