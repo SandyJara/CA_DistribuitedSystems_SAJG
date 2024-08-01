@@ -231,12 +231,12 @@ public class GuiCA extends JFrame {
 	                List<updateProfileRequest> requests = List.of(request);
 
 	                // just showing that the info was sent to update
-	                textField_UpdateResponse.setText("information sended to Update");
+	                textField_UpdateResponse.setText("information sended to Update"); //until here is printing in my GUI, its working properly
 
 	                // with this is possible to update the answer showed once the information was updates
 	                new Thread(() -> {
 	                    // showing my message response after the updating of the information
-	                    String responseMessage = ds.service2.client2.updateProfile(requests, null);
+	                    String responseMessage = ds.service2.client2.updateProfile(requests, null); //my code has error, its updating the message but taking long time
 
 	                    SwingUtilities.invokeLater(() -> {
 	                        textField_UpdateResponse.setText(responseMessage);

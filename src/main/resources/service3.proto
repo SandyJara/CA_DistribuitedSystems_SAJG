@@ -4,19 +4,37 @@ option java_multiple_files = true;
 option java_package = "ds.service3";
 option java_outer_classname = "Service3Impl";
 
-package service3;
+service BooksAvailable {
 
-// Interface exported by the server.
-service Service3 {
+// Server Streaming RPC Searching books online by TOPIC
+  rpc SearchBook(SearchBookRequest) returns (stream SearchBookResponse) {}
   
-  rpc service3_do(RequestMessage) returns (ResponseMessage) {}
-    
+  // Client streaming RPC for Reserve books online .
+  rpc ReserveBook(stream ReserveBookRequest) returns ( ReserveBookResponse) {}
+
 }
 
-message RequestMessage {
-  string text = 1;  
+// For searching books
+message SearchBookRequest {
+  string topic = 1;
 }
 
-message ResponseMessage {
-  int32 length = 1;
+message SearchBookResponse {
+  string title = 1;
+  string author = 2;
+  string description = 3;
+  int32 year = 4;
+  bool searchFinished = 5; // I needed to add a variable when the server finishes of sending results of the search
 }
+
+// For Reserve a book
+message ReserveBookRequest {
+  string bookId = 1;
+  string userId = 2;
+}
+
+message ReserveBookResponse {
+  string confirmationNumber = 1;
+  string status = 2;
+}
+
