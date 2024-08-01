@@ -51,5 +51,45 @@ package ds.service2;
 		    }
 		    
 		    //Starting my second method here for the update of the information
-		   
+		    public static void updateProfile(List<updateProfileRequest> requests) {
+		        String host = "localhost";
+		        int port = 50052;
+
+		        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
+		                .usePlaintext()
+		                .build();
+
+		        Service2Grpc.Service2Stub asyncStub = Service2Grpc.newStub(channel);
+
+		        StreamObserver<updateProfileRequest> requestObserver = asyncStub.updateProfile(new StreamObserver<updateProfileResponse>() {
+		            @Override
+		            public void onNext(updateProfileResponse response) {
+		                System.out.println("Update response: " + response.getStatus());
+		            }
+
+		            @Override
+		            public void onError(Throwable t) {
+		                logger.log(Level.SEVERE, "Update profile failed", t);
+		            }
+
+		            @Override
+		            public void onCompleted() {
+		                System.out.println("Profile update completed.");
+		                channel.shutdownNow();
+		            }
+		        });
+
+		        try {
+		            for (updateProfileRequest request : requests) {
+		                requestObserver.onNext(request);
+		            }
+		            requestObserver.onCompleted();
+		        } catch (RuntimeException e) {
+		            requestObserver.onError(e);
+		            throw e;
+		        }
 		    }
+	}
+		    
+		    
+		   

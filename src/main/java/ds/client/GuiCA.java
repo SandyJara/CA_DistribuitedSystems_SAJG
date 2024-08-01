@@ -12,9 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.lang.System.Logger;
+import java.util.List;
 import java.awt.Color;
 import ds.service1.client1;//creating this and the next 3 lines to read my client1 class from the other package
 import ds.service2.client2;
+import ds.service2.updateProfileRequest;
 import ds.service1.ControlRequest;
 import ds.service1.ControlResponse;
 import io.grpc.stub.StreamObserver;
@@ -31,17 +33,17 @@ public class GuiCA extends JFrame {
 	private JPanel contentPane;
 	private JTextField nameField;
 	private JTextField textField_Temperature;
-	private JTextField textField_name;
+	private JTextField textField_nameUpdate;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_turnON;
 //	private JTextField passwordField;
-	private JTextField textField_password;
-	private JTextField textField_status;
-	private JTextField textField_1;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField textField_passwordUpdate;
+	private JTextField textField_LogInResponse;
+	private JTextField textField_address;
+	private JTextField textField_phone;
+	private JTextField textField_statusProfileToUpdate;
+	private JTextField textField_UpdateResponse;
     private static client2 client2; // Declare static / instantiate when is needed
     private static client1 client1; // same as above
     private JPasswordField passwordField; 
@@ -65,8 +67,6 @@ public class GuiCA extends JFrame {
 	 * Create the frame.
 	 */
 	public GuiCA() {
-		
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 684, 676);
@@ -131,7 +131,7 @@ public class GuiCA extends JFrame {
 		
 		TurnOn.setBackground(new Color(168, 51, 159));
 		TurnOn.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		TurnOn.setBounds(197, 95, 85, 21);
+		TurnOn.setBounds(197, 95, 109, 21);
 		contentPane.add(TurnOn);
 		
 		nameField = new JTextField();
@@ -163,7 +163,7 @@ public class GuiCA extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-                textField_status.setText(status);		
+                textField_LogInResponse.setText(status);		
 			}    
 			});
 		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -195,6 +195,26 @@ public class GuiCA extends JFrame {
 		JButton btnNewButton_UpdateProfile = new JButton("UPDATE");
 		btnNewButton_UpdateProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+					String name = textField_nameUpdate.getText();
+	                String password = textField_passwordUpdate.getText();
+	                String status = textField_statusProfileToUpdate.getText();
+	                String address = textField_address.getText();
+	                String phone = textField_phone.getText();
+
+	                // Create UpdateProfileRequest(s)
+	                updateProfileRequest.Builder builder = updateProfileRequest.newBuilder();
+	                if (!name.isEmpty()) builder.setName(name);
+	                if (!password.isEmpty()) builder.setPassword(password);
+	                if (!status.isEmpty()) builder.setStatus(status);
+	                if (!address.isEmpty()) builder.setAddress(address);
+	                if (!phone.isEmpty()) builder.setPhoneNumber(phone);
+
+	                updateProfileRequest request = builder.build();
+
+	                // Send the request of the profile update
+	                client2.updateProfile(List.of(request));
+	                textField_UpdateResponse.setText("Profile update requested.");
+				
 			}
 		});
 		btnNewButton_UpdateProfile.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -202,11 +222,11 @@ public class GuiCA extends JFrame {
 		btnNewButton_UpdateProfile.setBounds(438, 396, 85, 21);
 		contentPane.add(btnNewButton_UpdateProfile);
 		
-		textField_name = new JTextField();
-		textField_name.setBackground(new Color(235, 252, 177));
-		textField_name.setColumns(10);
-		textField_name.setBounds(277, 298, 89, 21);
-		contentPane.add(textField_name);
+		textField_nameUpdate = new JTextField();
+		textField_nameUpdate.setBackground(new Color(235, 252, 177));
+		textField_nameUpdate.setColumns(10);
+		textField_nameUpdate.setBounds(277, 298, 89, 21);
+		contentPane.add(textField_nameUpdate);
 		
 		JLabel lblNewLabel_3_2_1 = new JLabel("Temperature Control");
 		lblNewLabel_3_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -254,7 +274,7 @@ public class GuiCA extends JFrame {
 		});
 		turnOff.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		turnOff.setBackground(new Color(168, 51, 159));
-		turnOff.setBounds(197, 123, 89, 21);
+		turnOff.setBounds(197, 123, 109, 21);
 		contentPane.add(turnOff);
 		
 		textField_turnON = new JTextField();
@@ -262,10 +282,10 @@ public class GuiCA extends JFrame {
 		textField_turnON.setBounds(316, 102, 333, 35);
 		contentPane.add(textField_turnON);
 		
-		JLabel LogIn_1 = new JLabel("Name:");
-		LogIn_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		LogIn_1.setBounds(197, 211, 50, 13);
-		contentPane.add(LogIn_1);
+		JLabel Name = new JLabel("Name:");
+		Name.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		Name.setBounds(197, 211, 50, 13);
+		contentPane.add(Name);
 		
 		JLabel LogIn_1_1 = new JLabel("Password:");
 		LogIn_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -283,15 +303,15 @@ public class GuiCA extends JFrame {
 		rdbtn_name.setBounds(192, 297, 79, 21);
 		contentPane.add(rdbtn_name);
 		
-		JRadioButton rdbtnPassword = new JRadioButton("password");
-		rdbtnPassword.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rdbtnPassword.setBounds(192, 332, 79, 21);
-		contentPane.add(rdbtnPassword);
+		JRadioButton rdbtn_password = new JRadioButton("password");
+		rdbtn_password.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		rdbtn_password.setBounds(192, 332, 79, 21);
+		contentPane.add(rdbtn_password);
 		
-		JRadioButton rdbtn_status = new JRadioButton("status");
-		rdbtn_status.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rdbtn_status.setBounds(192, 365, 79, 21);
-		contentPane.add(rdbtn_status);
+		JRadioButton rdbtn_statusProfileToUpdate = new JRadioButton("status");
+		rdbtn_statusProfileToUpdate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		rdbtn_statusProfileToUpdate.setBounds(192, 365, 79, 21);
+		contentPane.add(rdbtn_statusProfileToUpdate);
 		
 		JRadioButton rdbtn_address = new JRadioButton("address");
 		rdbtn_address.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -303,29 +323,29 @@ public class GuiCA extends JFrame {
 		rdbtn_phoneNumber.setBounds(372, 332, 107, 21);
 		contentPane.add(rdbtn_phoneNumber);
 		
-		textField_password = new JTextField();
-		textField_password.setBackground(new Color(235, 252, 177));
-		textField_password.setColumns(10);
-		textField_password.setBounds(277, 333, 89, 20);
-		contentPane.add(textField_password);
+		textField_passwordUpdate = new JTextField();
+		textField_passwordUpdate.setBackground(new Color(235, 252, 177));
+		textField_passwordUpdate.setColumns(10);
+		textField_passwordUpdate.setBounds(277, 333, 89, 20);
+		contentPane.add(textField_passwordUpdate);
 		
-		textField_status = new JTextField();
-		textField_status.setBackground(new Color(255, 255, 255));
-		textField_status.setColumns(10);
-		textField_status.setBounds(533, 195, 116, 58);
-		contentPane.add(textField_status);
+		textField_LogInResponse = new JTextField();
+		textField_LogInResponse.setBackground(new Color(255, 255, 255));
+		textField_LogInResponse.setColumns(10);
+		textField_LogInResponse.setBounds(533, 195, 116, 58);
+		contentPane.add(textField_LogInResponse);
 		
-		textField_1 = new JTextField();
-		textField_1.setBackground(new Color(235, 252, 177));
-		textField_1.setColumns(10);
-		textField_1.setBounds(485, 298, 89, 21);
-		contentPane.add(textField_1);
+		textField_address = new JTextField();
+		textField_address.setBackground(new Color(235, 252, 177));
+		textField_address.setColumns(10);
+		textField_address.setBounds(485, 298, 89, 21);
+		contentPane.add(textField_address);
 		
-		textField_5 = new JTextField();
-		textField_5.setBackground(new Color(235, 252, 177));
-		textField_5.setColumns(10);
-		textField_5.setBounds(485, 333, 89, 20);
-		contentPane.add(textField_5);
+		textField_phone = new JTextField();
+		textField_phone.setBackground(new Color(235, 252, 177));
+		textField_phone.setColumns(10);
+		textField_phone.setBounds(485, 333, 89, 20);
+		contentPane.add(textField_phone);
 		
 		JSeparator separator_1_1 = new JSeparator();
 		separator_1_1.setBounds(66, 269, 551, 3);
@@ -337,16 +357,16 @@ public class GuiCA extends JFrame {
 		separator_1.setBounds(10, 440, 639, 3);
 		contentPane.add(separator_1);
 		
-		textField_6 = new JTextField();
-		textField_6.setBackground(new Color(235, 252, 177));
-		textField_6.setColumns(10);
-		textField_6.setBounds(277, 365, 89, 21);
-		contentPane.add(textField_6);
+		textField_statusProfileToUpdate = new JTextField();
+		textField_statusProfileToUpdate.setBackground(new Color(235, 252, 177));
+		textField_statusProfileToUpdate.setColumns(10);
+		textField_statusProfileToUpdate.setBounds(277, 365, 89, 21);
+		contentPane.add(textField_statusProfileToUpdate);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(533, 373, 116, 44);
-		contentPane.add(textField_7);
+		textField_UpdateResponse = new JTextField();
+		textField_UpdateResponse.setColumns(10);
+		textField_UpdateResponse.setBounds(533, 373, 116, 44);
+		contentPane.add(textField_UpdateResponse);
 		
 		JSeparator separator_1_1_1 = new JSeparator();
 		separator_1_1_1.setBounds(55, 82, 551, 3);

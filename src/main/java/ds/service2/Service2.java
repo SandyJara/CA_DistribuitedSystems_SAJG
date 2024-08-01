@@ -51,8 +51,55 @@ public class Service2 extends Service2ImplBase{
 	        LogInResponse reply = LogInResponse.newBuilder().setStatus(status).build();
 	        responseObserver.onNext(reply);
 	        responseObserver.onCompleted();
-
 	}
+
+//ADDING HERE MY SECOND METHOD TO UPDATE THE INFORMATION OF THE USER
+
+@Override
+public StreamObserver<updateProfileRequest> updateProfile(final StreamObserver<updateProfileResponse> responseObserver) {
+    return new StreamObserver<updateProfileRequest>() {
+        private StringBuilder messageBuilder = new StringBuilder();
+
+        @Override
+        public void onNext(updateProfileRequest request) {
+            // Process each update request
+            if (request.getName() != null && !request.getName().isEmpty()) {
+                // Update name logic here
+                messageBuilder.append("Name updated to ").append(request.getName()).append("\n");
+            }
+            if (request.getPassword() != null && !request.getPassword().isEmpty()) {
+                // Update password logic here
+                messageBuilder.append("Password updated\n");
+            }
+            if (request.getStatus() != null && !request.getStatus().isEmpty()) {
+                // Update status logic here
+                messageBuilder.append("Status updated to ").append(request.getStatus()).append("\n");
+            }
+            if (request.getAddress() != null && !request.getAddress().isEmpty()) {
+                // Update address logic here
+                messageBuilder.append("Address updated to ").append(request.getAddress()).append("\n");
+            }
+            if (request.getPhoneNumber() != null && !request.getPhoneNumber().isEmpty()) {
+                // Update phone number logic here
+                messageBuilder.append("Phone number updated to ").append(request.getPhoneNumber()).append("\n");
+            }
+        }
+
+        @Override
+        public void onError(Throwable t) {
+            t.printStackTrace();
+        }
+
+        @Override
+        public void onCompleted() {
+            updateProfileResponse response = updateProfileResponse.newBuilder()
+                    .setStatus(messageBuilder.toString())
+                    .build();
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        }
+    };
+}
 
 
 }
