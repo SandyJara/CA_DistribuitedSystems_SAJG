@@ -44,7 +44,7 @@ import java.util.Scanner;
 	            public void onNext(SearchBookResponse response) {
 	                if (response.getSearchFinished()) {
 	                    logger.info("Search was completed.");
-	                    ReserveBook(scanner, asyncStub, foundBooks);
+	                    promptReservation(scanner, asyncStub, foundBooks);
 	                } else {
 	                	foundBooks.add(response.getTitle());
 	                    logger.info("Book found: " + response.getTitle() + " by " + response.getAuthor() +
@@ -72,7 +72,7 @@ import java.util.Scanner;
 	    }
 
 	//adding the reserve method of the books
-	    private static void ReserveBook(Scanner scanner, Service3Grpc.Service3Stub asyncStub, List<String> foundBooks) {
+	    private static void promptReservation(Scanner scanner, Service3Grpc.Service3Stub asyncStub, List<String> foundBooks) {
 	        if (foundBooks.isEmpty()) {
 	            logger.info("No books found to reserve.");
 	            return;
