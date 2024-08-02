@@ -4,10 +4,10 @@ option java_multiple_files = true;
 option java_package = "ds.service3";
 option java_outer_classname = "Service3Impl";
 
-service BooksAvailable {
+service Service3 {
 
 // Server Streaming RPC Searching books online by TOPIC
-  rpc SearchBook(SearchBookRequest) returns (stream SearchBookResponse) {}
+  rpc searchBook(SearchBookRequest) returns (stream SearchBookResponse) {}
   
   // Client streaming RPC for Reserve books online .
   rpc ReserveBook(stream ReserveBookRequest) returns ( ReserveBookResponse) {}

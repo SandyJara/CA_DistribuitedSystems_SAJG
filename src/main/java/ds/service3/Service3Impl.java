@@ -50,11 +50,11 @@ public final class Service3Impl {
       " \001(\010\"4\n\022ReserveBookRequest\022\016\n\006bookId\030\001 \001" +
       "(\t\022\016\n\006userId\030\002 \001(\t\"A\n\023ReserveBookRespons" +
       "e\022\032\n\022confirmationNumber\030\001 \001(\t\022\016\n\006status\030" +
-      "\002 \001(\t2\211\001\n\016BooksAvailable\0229\n\nSearchBook\022\022" +
-      ".SearchBookRequest\032\023.SearchBookResponse\"" +
-      "\0000\001\022<\n\013ReserveBook\022\023.ReserveBookRequest\032" +
-      "\024.ReserveBookResponse\"\000(\001B\035\n\013ds.service3" +
-      "B\014Service3ImplP\001b\006proto3"
+      "\002 \001(\t2\203\001\n\010Service3\0229\n\nsearchBook\022\022.Searc" +
+      "hBookRequest\032\023.SearchBookResponse\"\0000\001\022<\n" +
+      "\013ReserveBook\022\023.ReserveBookRequest\032\024.Rese" +
+      "rveBookResponse\"\000(\001B\035\n\013ds.service3B\014Serv" +
+      "ice3ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
