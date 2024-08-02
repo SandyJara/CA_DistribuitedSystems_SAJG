@@ -16,6 +16,7 @@ import java.util.List;
 import java.awt.Color;
 import ds.service1.client1;//creating this and the next 3 lines to read my client1 class from the other package
 import ds.service2.client2;
+import ds.service3.client3;
 import ds.service2.updateProfileRequest;
 import ds.service2.updateProfileResponse;
 import ds.service1.ControlRequest;
@@ -35,7 +36,7 @@ public class GuiCA extends JFrame {
 	private JTextField nameField;
 	private JTextField textField_Temperature;
 	private JTextField textField_nameUpdate;
-	private JTextField textField_3;
+	private JTextField textField_Search;
 	private JTextField textField_4;
 	private JTextField textField_turnON;
 //	private JTextField passwordField;
@@ -47,7 +48,12 @@ public class GuiCA extends JFrame {
 	private JTextField textField_UpdateResponse;
     private static client2 client2; // Declare static / instantiate when is needed
     private static client1 client1; // same as above
+    private static client3 client3; // same as above
     private JPasswordField passwordField; 
+    private JList<String> genreList;
+    private JButton Button_SearchBook;
+    private JTextField textField_SearchResults;
+    
 	/**
 	 * Launch the application.
 	 */
@@ -70,7 +76,7 @@ public class GuiCA extends JFrame {
 	public GuiCA() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 684, 676);
+		setBounds(100, 100, 684, 728);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -260,36 +266,31 @@ public class GuiCA extends JFrame {
 		textField_nameUpdate.setBounds(277, 298, 89, 21);
 		contentPane.add(textField_nameUpdate);
 		
-		JLabel lblNewLabel_3_2_1 = new JLabel("Temperature Control");
+		JLabel lblNewLabel_3_2_1 = new JLabel("Search Book: ");
 		lblNewLabel_3_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_3_2_1.setBounds(43, 489, 184, 13);
 		contentPane.add(lblNewLabel_3_2_1);
-		
-		JButton btnNewButton_1_1_1 = new JButton("START");
-		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1_1_1.setBackground(new Color(168, 51, 159));
-		btnNewButton_1_1_1.setBounds(197, 486, 85, 21);
-		contentPane.add(btnNewButton_1_1_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(297, 476, 299, 43);
-		contentPane.add(textField_3);
+	
+			
+		textField_Search = new JTextField();
+		textField_Search.setColumns(10);
+		textField_Search.setBounds(297, 476, 352, 71);
+		contentPane.add(textField_Search);
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(292, 547, 304, 49);
+		textField_4.setBounds(298, 603, 351, 49);
 		contentPane.add(textField_4);
 		
-		JButton btnNewButton_1_2_1 = new JButton("START");
+		JButton btnNewButton_1_2_1 = new JButton("RESERVE");
 		btnNewButton_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1_2_1.setBackground(new Color(168, 51, 159));
-		btnNewButton_1_2_1.setBounds(197, 560, 85, 21);
+		btnNewButton_1_2_1.setBounds(197, 605, 85, 21);
 		contentPane.add(btnNewButton_1_2_1);
 		
-		JLabel lblNewLabel_3_1_1_1 = new JLabel("Ligth Control");
+		JLabel lblNewLabel_3_1_1_1 = new JLabel("Reserve Book");
 		lblNewLabel_3_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3_1_1_1.setBounds(43, 563, 184, 13);
+		lblNewLabel_3_1_1_1.setBounds(43, 608, 184, 13);
 		contentPane.add(lblNewLabel_3_1_1_1);
 		
 		JButton turnOff = new JButton("TURN OFF");
@@ -380,7 +381,7 @@ public class GuiCA extends JFrame {
 		contentPane.add(textField_phone);
 		
 		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setBounds(66, 269, 551, 3);
+		separator_1_1.setBounds(67, 285, 551, 3);
 		contentPane.add(separator_1_1);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -403,5 +404,34 @@ public class GuiCA extends JFrame {
 		JSeparator separator_1_1_1 = new JSeparator();
 		separator_1_1_1.setBounds(55, 82, 551, 3);
 		contentPane.add(separator_1_1_1);
-	}
+		
+		Button_SearchBook = new JButton("SEARCH");
+		Button_SearchBook.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		Button_SearchBook.setBackground(new Color(168, 51, 159));
+		Button_SearchBook.setBounds(197, 500, 85, 21);
+		contentPane.add(Button_SearchBook);
+		
+		//JList list = new JList();    I used the next line to give options for the search of books
+		String[] topic = {"Science", "Fiction", "Literature", "Thriller"};
+		JList<String> list = new JList<>(topic);
+		list.setBounds(91, 512, 81, 71);
+		contentPane.add(list);
+		setVisible(true);
+
+		JButton Button_SearchBook = new JButton("SEARCH");
+		Button_SearchBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                		
+				 // Get selected genre
+                String selectedGenre = genreList.getSelectedValue();
+                if (selectedGenre != null) {
+                    //performSearch(selectedGenre);
+                	textField_Search.setText("testing");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select a genre.");
+                }
+            }
+        });
+        setVisible(true);
+		} 
 }
