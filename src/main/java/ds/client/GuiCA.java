@@ -253,8 +253,7 @@ public class GuiCA extends JFrame {
 	            }
 	        });
 	                
-	                
-	                
+	                       
 		btnNewButton_UpdateProfile.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_UpdateProfile.setBackground(new Color(168, 51, 159));
 		btnNewButton_UpdateProfile.setBounds(438, 365, 85, 21);
@@ -432,6 +431,11 @@ public class GuiCA extends JFrame {
                 }
             }
         });
+		
+		
+		
+		
+		
         setVisible(true);
 		} 
 }

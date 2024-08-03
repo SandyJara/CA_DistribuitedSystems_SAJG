@@ -2,9 +2,10 @@ package ds.service3;
 
 
 	import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-//import java.util.List;
+	import java.util.List;
+	import java.util.Scanner;
+	import java.util.concurrent.CountDownLatch;
+	//import java.util.List;
 	import java.util.concurrent.TimeUnit;
 	import java.util.logging.Level;
 	import java.util.logging.Logger;
@@ -69,6 +70,7 @@ import java.util.Scanner;
 
 	        // Waiting time for the response
 	        channel.awaitTermination(1, TimeUnit.MINUTES);
+	       // channel.shutdown().awaitTermination(1, TimeUnit.MINUTES);
 	    }
 
 	//adding the reserve method of the books
@@ -77,6 +79,9 @@ import java.util.Scanner;
 	            logger.info("No books found to reserve.");
 	            return;
 	        }
+	        
+	        List<String> booksToReserve = new ArrayList<>();
+	        String userId = null;
 
 	        // Show all found books
 	        System.out.println("\nFound books:");
@@ -84,51 +89,70 @@ import java.util.Scanner;
 	            System.out.println((i + 1) + ". " + foundBooks.get(i));
 	        }
 
-	        // Ask if the user wants to reserve a book
-	        System.out.print("Would you like to reserve a book? (yes/no): ");
-	        String response = scanner.nextLine();
+	     // Ask if the user wants to reserve a book, I added loops and the condition to continue adding books if the user wants, until the answer is NO it will generate the confirmation of the reservation
+	        for (int i = 0; i < foundBooks.size(); i++) {
+	            String book = foundBooks.get(i);
 
-	        if ("yes".equalsIgnoreCase(response)) {
-	            System.out.print("Enter the title of the book you want to reserve: ");
-	            String bookTitle = scanner.nextLine();
+	            System.out.print("Would you like to reserve book " + (i + 1) + ": " + book + "? (yes/no): "); //here Im printing the options to show to the user if she/he wants to reserve a book, going in order offering all the ones found
+	            String response = scanner.nextLine();
 
-	            if (foundBooks.contains(bookTitle)) {
-	                System.out.print("Enter your user ID: ");
-	                String userId = scanner.nextLine();
+	            if ("yes".equalsIgnoreCase(response)) {
+	                booksToReserve.add(book);
 
-	                StreamObserver<ReserveBookRequest> requestObserver = asyncStub.reserveBook(new StreamObserver<ReserveBookResponse>() {
-	                    @Override
-	                    public void onNext(ReserveBookResponse response) {
-	                        logger.info("Reservation Confirmation Number: " + response.getConfirmationNumber());
-	                        logger.info("Reservation Status: " + response.getStatus());
-	                    }
+	                if (userId == null) {
+	                    System.out.print("Enter your user ID: ");
+	                    userId = scanner.nextLine();
+	                }
+	            }
 
-	                    @Override
-	                    public void onError(Throwable t) {
-	                        logger.log(Level.SEVERE, "Reservation failed:", t);
-	                    }
+	            System.out.print("Would you like to check another book? (yes/no): ");
+	            response = scanner.nextLine();
 
-	                    @Override
-	                    public void onCompleted() {
-	                        logger.info("Reservation completed.");
-	                    }
-	                });
+	            if (!"yes".equalsIgnoreCase(response)) {
+	                break;
+	            }
+	        }
 
-	                // Send the reservation request
+	        if (!booksToReserve.isEmpty()) {
+	            CountDownLatch latch = new CountDownLatch(1);
+
+	            StreamObserver<ReserveBookRequest> requestObserver = asyncStub.reserveBook(new StreamObserver<ReserveBookResponse>() {
+	                @Override
+	                public void onNext(ReserveBookResponse response) {
+	                    logger.info("Reservation Confirmation Number: " + response.getConfirmationNumber());
+	                    logger.info("Reservation Status: " + response.getStatus());
+	                }
+
+	                @Override
+	                public void onError(Throwable t) {
+	                    logger.log(Level.SEVERE, "Reservation failed:", t);
+	                    latch.countDown();
+	                }
+
+	                @Override
+	                public void onCompleted() {
+	                    logger.info("Reservation completed.");
+	                    latch.countDown();
+	                }
+	            });
+
+	            for (String book : booksToReserve) {
 	                ReserveBookRequest reserveRequest = ReserveBookRequest.newBuilder()
-	                        .setBookId(bookTitle) // Assuming book title as ID for simplicity
+	                        .setBookId(book) // Assuming book title as ID for simplicity
 	                        .setUserId(userId)
 	                        .build();
 	                requestObserver.onNext(reserveRequest);
-	                
-	                // Complete the request stream
-	                requestObserver.onCompleted();
-	            } else {
-	                logger.info("Book title not found in the search results.");
+	            }
+
+	            requestObserver.onCompleted();
+
+	            try {
+	                latch.await(1, TimeUnit.MINUTES);
+	            } catch (InterruptedException e) {
+	                logger.log(Level.SEVERE, "Reservation process interrupted:", e);
 	            }
 	        } else {
-	            logger.info("Reservation not made.");
+	            logger.info("No reservations made.");
 	        }
 	    }
-	    
 	}

@@ -107,7 +107,7 @@ import java.util.concurrent.TimeUnit;
 		        try {
 		            channel.awaitTermination(1, TimeUnit.MINUTES);
 		        } catch (InterruptedException e) {
-		            System.err.println("Thread interrupted: " + e.getMessage());  // Debug statement
+		            System.err.println("Thread interrupted: " + e.getMessage());  
 		        }
 
 		        return responseBuilderUpdateProfile.toString();

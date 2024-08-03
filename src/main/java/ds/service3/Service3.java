@@ -3,6 +3,7 @@ package ds.service3;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 
@@ -109,28 +110,45 @@ import io.grpc.stub.StreamObserver;
 	    @Override
 	    public StreamObserver<ReserveBookRequest> reserveBook(StreamObserver<ReserveBookResponse> responseObserver) {
 	        return new StreamObserver<ReserveBookRequest>() {
-
+	        	private List<String> reservedBooks = new ArrayList<>();
+	            private String userId;
+	        	
 	            @Override
 	            public void onNext(ReserveBookRequest request) {
 	                String bookId = request.getBookId();
-	                String userId = request.getUserId();
+	                userId = request.getUserId();
 	              //  int reservationCounter = 1;
 	                
 	                
 	             // Simulate reservation process
-	                int currentReservationNumber = reservationCounter++; // Increment reservation counter
-	                String confirmationNumber = "CONF" + currentReservationNumber;
-	                String status = "Reserved";
+	             //   int currentReservationNumber = reservationCounter++; // Increment reservation counter
+	            //    String confirmationNumber = "NoConfirmation." + currentReservationNumber;
+	            //    String status = "Reserved";
 
+	                reservedBooks.add(bookId);
 	                System.out.println("Received reservation request for Book ID: " + bookId + ", User ID: " + userId);
 
-	                ReserveBookResponse response = ReserveBookResponse.newBuilder()
+	             // Ask if the user wants to reserve another book
+	                System.out.println("Do you want to reserve another book? (yes/no): ");
+	                Scanner scanner = new Scanner(System.in);
+	                String response = scanner.nextLine();
+
+	                //added the condition, this is to asks to add more books in the reservation and proceed with an action depending on the answer
+	                if (!"yes".equalsIgnoreCase(response)) {
+	                    int currentReservationNumber = reservationCounter++;
+	                    String confirmationNumber = "NoConfirmation." + currentReservationNumber;
+	                    String status = "Reserved";
+	                
+	                
+	                ReserveBookResponse reserveResponse = ReserveBookResponse.newBuilder()
 	                        .setConfirmationNumber(confirmationNumber)
 	                        .setStatus(status)
 	                        .build();
 
-	                responseObserver.onNext(response);
+	                responseObserver.onNext(reserveResponse);//had to added it to correct the code
+	                responseObserver.onCompleted();
 	            }
+	           }
 
 	            @Override
 	            public void onError(Throwable t) {
