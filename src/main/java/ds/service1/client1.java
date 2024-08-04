@@ -1,12 +1,19 @@
 package ds.service1;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import ds.service1.client1;
+
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceListener;
+import javax.jmdns.ServiceInfo;
+
 import ds.service1.Service1Grpc.Service1Stub;
 import ds.service1.Service1Grpc.Service1BlockingStub;
 import io.grpc.ManagedChannel;
@@ -18,9 +25,14 @@ public class client1 {
 
 	 private static final Logger logger = Logger.getLogger(client1.class.getName());
 
-	    public static String startTemperatureControl()  throws InterruptedException {
-	        String host = "localhost";
-	        int port = 50051;
+	    public static String startTemperatureControl(String host, int port)  throws InterruptedException {
+	    	if (host == null || port == 0) {
+	            return "Service not yet discovered";
+	        }
+	    	
+	    	
+	    	//   	private static String host;
+	  //      private static int port;
 
 	       // final String[] responseMessage = {null};   When i didnt use the arrayList, the response in my GUI WAS just "Action from server received: null", It wasn't printing all while it executed it
 	       final List<String> actions = new ArrayList<>();
@@ -30,8 +42,8 @@ public class client1 {
 	                .usePlaintext()
 	                .build();
 
-	        //Service1Stub stub = Service1Grpc.newStub(channel);
-	        Service1Grpc.Service1Stub stub = Service1Grpc.newStub(channel);
+	        Service1Stub stub = Service1Grpc.newStub(channel);
+	    //    Service1Grpc.Service1Stub stub = Service1Grpc.newStub(channel);
 	        
 	        StreamObserver<ControlRequest> requestStreamObserver = stub.controlTemperature(new StreamObserver<ControlResponse>() { //it changed because I needed to add the streaming (not the unary response)
 	            @Override
@@ -78,10 +90,12 @@ public class client1 {
 	    
 	    //Starting my second method here for the lights
 	    
-	    public static String controlLights(boolean turnOn) {
-	    	
-	    	 String host = "localhost";
-	         int port = 50051;
+	    public static String controlLights(String host, int port, boolean turnOn) {
+	    	 if (host == null || port == 0) {
+	             return "Service not yet discovered";
+	         }
+	    	// String host = "localhost";
+	       //  int port = 50051;
 
 	         ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
 	                 .usePlaintext()
@@ -107,15 +121,40 @@ public class client1 {
 	    }
 
 	    public static void main(String[] args) throws InterruptedException {
-	        String temperatureResult = startTemperatureControl();
-	        logger.info("Temperature Control Result: " + temperatureResult);
-	        
-	        Thread.sleep(5000);
-	        
-	        controlLights(true);  // Turn lights on
-	        Thread.sleep(5000);
-	        
-	        controlLights(false); // Turn lights off
-	        Thread.sleep(5000);
+	        //ADDING for my discovery
+	    	ServiceDiscovery1 discovery = new ServiceDiscovery1();
+	        try {
+	            discovery.discoverService1();
+	        } catch (InterruptedException e) {
+	            logger.severe("Service discovery interrupted: " + e.getMessage());
+	            return;
+	        }
+
+	        String host = discovery.getHost();
+	        int port = discovery.getPort();
+
+	        if (host == null || port == 0) {
+	            logger.severe("Service not found");
+	            return;
+	        }
+
+	        logger.info("Discovered service at host: " + host + ", port: " + port);
+
+	        try {
+	            String temperatureResult = startTemperatureControl(host, port);
+	            logger.info("Temperature Control Result: " + temperatureResult);
+
+	   //         Thread.sleep(5000);
+
+	            String lightOnResult = controlLights(host, port, true);
+	            logger.info("Light On Result: " + lightOnResult);
+
+	  //          Thread.sleep(5000);
+
+	            String lightOffResult = controlLights(host, port, false);
+	            logger.info("Light Off Result: " + lightOffResult);
+	        } catch (Exception e) {
+	            logger.log(Level.SEVERE, "Error during gRPC operations: ", e);
+	        }
 	    }
-	}
+}

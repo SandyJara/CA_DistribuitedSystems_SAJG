@@ -1,19 +1,6 @@
 package ds.service1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
+    value = "by gRPC proto compiler (version 1.48.0)",
     comments = "Source: service1.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class Service1Grpc {
 
   private Service1Grpc() {}
@@ -44,22 +32,21 @@ public final class Service1Grpc {
     if ((getControlTemperatureMethod = Service1Grpc.getControlTemperatureMethod) == null) {
       synchronized (Service1Grpc.class) {
         if ((getControlTemperatureMethod = Service1Grpc.getControlTemperatureMethod) == null) {
-          Service1Grpc.getControlTemperatureMethod = getControlTemperatureMethod = 
+          Service1Grpc.getControlTemperatureMethod = getControlTemperatureMethod =
               io.grpc.MethodDescriptor.<ds.service1.ControlRequest, ds.service1.ControlResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "service1.Service1", "controlTemperature"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "controlTemperature"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service1.ControlRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service1.ControlResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new Service1MethodDescriptorSupplier("controlTemperature"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Service1MethodDescriptorSupplier("controlTemperature"))
+              .build();
         }
-     }
-     return getControlTemperatureMethod;
+      }
+    }
+    return getControlTemperatureMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ds.service1.LightRequest,
@@ -76,29 +63,35 @@ public final class Service1Grpc {
     if ((getControlLightsMethod = Service1Grpc.getControlLightsMethod) == null) {
       synchronized (Service1Grpc.class) {
         if ((getControlLightsMethod = Service1Grpc.getControlLightsMethod) == null) {
-          Service1Grpc.getControlLightsMethod = getControlLightsMethod = 
+          Service1Grpc.getControlLightsMethod = getControlLightsMethod =
               io.grpc.MethodDescriptor.<ds.service1.LightRequest, ds.service1.LightResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "service1.Service1", "ControlLights"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ControlLights"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service1.LightRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service1.LightResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new Service1MethodDescriptorSupplier("ControlLights"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Service1MethodDescriptorSupplier("ControlLights"))
+              .build();
         }
-     }
-     return getControlLightsMethod;
+      }
+    }
+    return getControlLightsMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static Service1Stub newStub(io.grpc.Channel channel) {
-    return new Service1Stub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service1Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service1Stub>() {
+        @java.lang.Override
+        public Service1Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service1Stub(channel, callOptions);
+        }
+      };
+    return Service1Stub.newStub(factory, channel);
   }
 
   /**
@@ -106,7 +99,14 @@ public final class Service1Grpc {
    */
   public static Service1BlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new Service1BlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service1BlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service1BlockingStub>() {
+        @java.lang.Override
+        public Service1BlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service1BlockingStub(channel, callOptions);
+        }
+      };
+    return Service1BlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -114,7 +114,14 @@ public final class Service1Grpc {
    */
   public static Service1FutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new Service1FutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service1FutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service1FutureStub>() {
+        @java.lang.Override
+        public Service1FutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service1FutureStub(channel, callOptions);
+        }
+      };
+    return Service1FutureStub.newStub(factory, channel);
   }
 
   /**
@@ -131,7 +138,7 @@ public final class Service1Grpc {
      */
     public io.grpc.stub.StreamObserver<ds.service1.ControlRequest> controlTemperature(
         io.grpc.stub.StreamObserver<ds.service1.ControlResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getControlTemperatureMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getControlTemperatureMethod(), responseObserver);
     }
 
     /**
@@ -141,21 +148,21 @@ public final class Service1Grpc {
      */
     public void controlLights(ds.service1.LightRequest request,
         io.grpc.stub.StreamObserver<ds.service1.LightResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getControlLightsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getControlLightsMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getControlTemperatureMethod(),
-            asyncBidiStreamingCall(
+            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
               new MethodHandlers<
                 ds.service1.ControlRequest,
                 ds.service1.ControlResponse>(
                   this, METHODID_CONTROL_TEMPERATURE)))
           .addMethod(
             getControlLightsMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 ds.service1.LightRequest,
                 ds.service1.LightResponse>(
@@ -169,19 +176,15 @@ public final class Service1Grpc {
    * Air Conditioning service definition.
    * </pre>
    */
-  public static final class Service1Stub extends io.grpc.stub.AbstractStub<Service1Stub> {
-    private Service1Stub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service1Stub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service1Stub extends io.grpc.stub.AbstractAsyncStub<Service1Stub> {
+    private Service1Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service1Stub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service1Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service1Stub(channel, callOptions);
     }
 
@@ -192,7 +195,7 @@ public final class Service1Grpc {
      */
     public io.grpc.stub.StreamObserver<ds.service1.ControlRequest> controlTemperature(
         io.grpc.stub.StreamObserver<ds.service1.ControlResponse> responseObserver) {
-      return asyncBidiStreamingCall(
+      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getControlTemperatureMethod(), getCallOptions()), responseObserver);
     }
 
@@ -203,7 +206,7 @@ public final class Service1Grpc {
      */
     public void controlLights(ds.service1.LightRequest request,
         io.grpc.stub.StreamObserver<ds.service1.LightResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getControlLightsMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -213,19 +216,15 @@ public final class Service1Grpc {
    * Air Conditioning service definition.
    * </pre>
    */
-  public static final class Service1BlockingStub extends io.grpc.stub.AbstractStub<Service1BlockingStub> {
-    private Service1BlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service1BlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service1BlockingStub extends io.grpc.stub.AbstractBlockingStub<Service1BlockingStub> {
+    private Service1BlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service1BlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service1BlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service1BlockingStub(channel, callOptions);
     }
 
@@ -235,7 +234,7 @@ public final class Service1Grpc {
      * </pre>
      */
     public ds.service1.LightResponse controlLights(ds.service1.LightRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getControlLightsMethod(), getCallOptions(), request);
     }
   }
@@ -245,19 +244,15 @@ public final class Service1Grpc {
    * Air Conditioning service definition.
    * </pre>
    */
-  public static final class Service1FutureStub extends io.grpc.stub.AbstractStub<Service1FutureStub> {
-    private Service1FutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service1FutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service1FutureStub extends io.grpc.stub.AbstractFutureStub<Service1FutureStub> {
+    private Service1FutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service1FutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service1FutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service1FutureStub(channel, callOptions);
     }
 
@@ -268,7 +263,7 @@ public final class Service1Grpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ds.service1.LightResponse> controlLights(
         ds.service1.LightRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getControlLightsMethod(), getCallOptions()), request);
     }
   }

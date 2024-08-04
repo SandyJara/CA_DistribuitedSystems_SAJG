@@ -1,25 +1,13 @@
 package ds.service3;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
+    value = "by gRPC proto compiler (version 1.48.0)",
     comments = "Source: service3.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class Service3Grpc {
 
   private Service3Grpc() {}
@@ -41,22 +29,21 @@ public final class Service3Grpc {
     if ((getSearchBookMethod = Service3Grpc.getSearchBookMethod) == null) {
       synchronized (Service3Grpc.class) {
         if ((getSearchBookMethod = Service3Grpc.getSearchBookMethod) == null) {
-          Service3Grpc.getSearchBookMethod = getSearchBookMethod = 
+          Service3Grpc.getSearchBookMethod = getSearchBookMethod =
               io.grpc.MethodDescriptor.<ds.service3.SearchBookRequest, ds.service3.SearchBookResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "Service3", "searchBook"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "searchBook"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service3.SearchBookRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service3.SearchBookResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new Service3MethodDescriptorSupplier("searchBook"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Service3MethodDescriptorSupplier("searchBook"))
+              .build();
         }
-     }
-     return getSearchBookMethod;
+      }
+    }
+    return getSearchBookMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ds.service3.ReserveBookRequest,
@@ -73,29 +60,35 @@ public final class Service3Grpc {
     if ((getReserveBookMethod = Service3Grpc.getReserveBookMethod) == null) {
       synchronized (Service3Grpc.class) {
         if ((getReserveBookMethod = Service3Grpc.getReserveBookMethod) == null) {
-          Service3Grpc.getReserveBookMethod = getReserveBookMethod = 
+          Service3Grpc.getReserveBookMethod = getReserveBookMethod =
               io.grpc.MethodDescriptor.<ds.service3.ReserveBookRequest, ds.service3.ReserveBookResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "Service3", "ReserveBook"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ReserveBook"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service3.ReserveBookRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service3.ReserveBookResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new Service3MethodDescriptorSupplier("ReserveBook"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Service3MethodDescriptorSupplier("ReserveBook"))
+              .build();
         }
-     }
-     return getReserveBookMethod;
+      }
+    }
+    return getReserveBookMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static Service3Stub newStub(io.grpc.Channel channel) {
-    return new Service3Stub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service3Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service3Stub>() {
+        @java.lang.Override
+        public Service3Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service3Stub(channel, callOptions);
+        }
+      };
+    return Service3Stub.newStub(factory, channel);
   }
 
   /**
@@ -103,7 +96,14 @@ public final class Service3Grpc {
    */
   public static Service3BlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new Service3BlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service3BlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service3BlockingStub>() {
+        @java.lang.Override
+        public Service3BlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service3BlockingStub(channel, callOptions);
+        }
+      };
+    return Service3BlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -111,7 +111,14 @@ public final class Service3Grpc {
    */
   public static Service3FutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new Service3FutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service3FutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service3FutureStub>() {
+        @java.lang.Override
+        public Service3FutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service3FutureStub(channel, callOptions);
+        }
+      };
+    return Service3FutureStub.newStub(factory, channel);
   }
 
   /**
@@ -125,7 +132,7 @@ public final class Service3Grpc {
      */
     public void searchBook(ds.service3.SearchBookRequest request,
         io.grpc.stub.StreamObserver<ds.service3.SearchBookResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getSearchBookMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSearchBookMethod(), responseObserver);
     }
 
     /**
@@ -135,21 +142,21 @@ public final class Service3Grpc {
      */
     public io.grpc.stub.StreamObserver<ds.service3.ReserveBookRequest> reserveBook(
         io.grpc.stub.StreamObserver<ds.service3.ReserveBookResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getReserveBookMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getReserveBookMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getSearchBookMethod(),
-            asyncServerStreamingCall(
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
                 ds.service3.SearchBookRequest,
                 ds.service3.SearchBookResponse>(
                   this, METHODID_SEARCH_BOOK)))
           .addMethod(
             getReserveBookMethod(),
-            asyncClientStreamingCall(
+            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
               new MethodHandlers<
                 ds.service3.ReserveBookRequest,
                 ds.service3.ReserveBookResponse>(
@@ -160,19 +167,15 @@ public final class Service3Grpc {
 
   /**
    */
-  public static final class Service3Stub extends io.grpc.stub.AbstractStub<Service3Stub> {
-    private Service3Stub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service3Stub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service3Stub extends io.grpc.stub.AbstractAsyncStub<Service3Stub> {
+    private Service3Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service3Stub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service3Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service3Stub(channel, callOptions);
     }
 
@@ -183,7 +186,7 @@ public final class Service3Grpc {
      */
     public void searchBook(ds.service3.SearchBookRequest request,
         io.grpc.stub.StreamObserver<ds.service3.SearchBookResponse> responseObserver) {
-      asyncServerStreamingCall(
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getSearchBookMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -194,26 +197,22 @@ public final class Service3Grpc {
      */
     public io.grpc.stub.StreamObserver<ds.service3.ReserveBookRequest> reserveBook(
         io.grpc.stub.StreamObserver<ds.service3.ReserveBookResponse> responseObserver) {
-      return asyncClientStreamingCall(
+      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
           getChannel().newCall(getReserveBookMethod(), getCallOptions()), responseObserver);
     }
   }
 
   /**
    */
-  public static final class Service3BlockingStub extends io.grpc.stub.AbstractStub<Service3BlockingStub> {
-    private Service3BlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service3BlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service3BlockingStub extends io.grpc.stub.AbstractBlockingStub<Service3BlockingStub> {
+    private Service3BlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service3BlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service3BlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service3BlockingStub(channel, callOptions);
     }
 
@@ -224,26 +223,22 @@ public final class Service3Grpc {
      */
     public java.util.Iterator<ds.service3.SearchBookResponse> searchBook(
         ds.service3.SearchBookRequest request) {
-      return blockingServerStreamingCall(
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getSearchBookMethod(), getCallOptions(), request);
     }
   }
 
   /**
    */
-  public static final class Service3FutureStub extends io.grpc.stub.AbstractStub<Service3FutureStub> {
-    private Service3FutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service3FutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service3FutureStub extends io.grpc.stub.AbstractFutureStub<Service3FutureStub> {
+    private Service3FutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service3FutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service3FutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service3FutureStub(channel, callOptions);
     }
   }

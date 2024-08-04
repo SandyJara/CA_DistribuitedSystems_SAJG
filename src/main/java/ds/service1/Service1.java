@@ -1,6 +1,9 @@
 package ds.service1;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+
+import com.sun.net.httpserver.HttpServer;
 
 import ds.service1.Service1Grpc.Service1ImplBase;
 import io.grpc.Server;
@@ -8,23 +11,45 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 
+
 public class Service1 extends Service1ImplBase{
+    private Server server;
 
+    public void startMe() {
+        try {
+            int port = 50051;
+            server = ServerBuilder.forPort(port)
+                    .addService(this)
+                    .build()
+                    .start();
+            System.out.println("Service-1 started, listening on " + port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-
+    public void stopMe() {
+        if (server != null) {
+            server.shutdown();
+        }
+    }
+	
+	
 	public static void main(String[] args) throws InterruptedException, IOException {
+		
+				
 		Service1 service1 = new Service1();
+//		int port = 50051;
+		service1.startMe();
+        service1.server.awaitTermination();
+		//Server server = ServerBuilder.forPort(port)
+		//		.addService(service1)
+		//		.build()
+		//		.start();
 
-		int port = 50051;
+		//System.out.println("Service-1 started, listening on " + port);
 
-		Server server = ServerBuilder.forPort(port)
-				.addService(service1)
-				.build()
-				.start();
-
-		System.out.println("Service-1 started, listening on " + port);
-
-		server.awaitTermination();
+		//server.awaitTermination();
 	}
 
 

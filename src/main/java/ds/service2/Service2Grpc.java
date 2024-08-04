@@ -1,25 +1,13 @@
 package ds.service2;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
+    value = "by gRPC proto compiler (version 1.48.0)",
     comments = "Source: service2.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class Service2Grpc {
 
   private Service2Grpc() {}
@@ -41,22 +29,21 @@ public final class Service2Grpc {
     if ((getLogInMethod = Service2Grpc.getLogInMethod) == null) {
       synchronized (Service2Grpc.class) {
         if ((getLogInMethod = Service2Grpc.getLogInMethod) == null) {
-          Service2Grpc.getLogInMethod = getLogInMethod = 
+          Service2Grpc.getLogInMethod = getLogInMethod =
               io.grpc.MethodDescriptor.<ds.service2.LogInRequest, ds.service2.LogInResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "service2.Service2", "LogIn"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "LogIn"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service2.LogInRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service2.LogInResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new Service2MethodDescriptorSupplier("LogIn"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Service2MethodDescriptorSupplier("LogIn"))
+              .build();
         }
-     }
-     return getLogInMethod;
+      }
+    }
+    return getLogInMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ds.service2.updateProfileRequest,
@@ -73,29 +60,35 @@ public final class Service2Grpc {
     if ((getUpdateProfileMethod = Service2Grpc.getUpdateProfileMethod) == null) {
       synchronized (Service2Grpc.class) {
         if ((getUpdateProfileMethod = Service2Grpc.getUpdateProfileMethod) == null) {
-          Service2Grpc.getUpdateProfileMethod = getUpdateProfileMethod = 
+          Service2Grpc.getUpdateProfileMethod = getUpdateProfileMethod =
               io.grpc.MethodDescriptor.<ds.service2.updateProfileRequest, ds.service2.updateProfileResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "service2.Service2", "updateProfile"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "updateProfile"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service2.updateProfileRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ds.service2.updateProfileResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new Service2MethodDescriptorSupplier("updateProfile"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Service2MethodDescriptorSupplier("updateProfile"))
+              .build();
         }
-     }
-     return getUpdateProfileMethod;
+      }
+    }
+    return getUpdateProfileMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static Service2Stub newStub(io.grpc.Channel channel) {
-    return new Service2Stub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service2Stub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service2Stub>() {
+        @java.lang.Override
+        public Service2Stub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service2Stub(channel, callOptions);
+        }
+      };
+    return Service2Stub.newStub(factory, channel);
   }
 
   /**
@@ -103,7 +96,14 @@ public final class Service2Grpc {
    */
   public static Service2BlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new Service2BlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service2BlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service2BlockingStub>() {
+        @java.lang.Override
+        public Service2BlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service2BlockingStub(channel, callOptions);
+        }
+      };
+    return Service2BlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -111,7 +111,14 @@ public final class Service2Grpc {
    */
   public static Service2FutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new Service2FutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Service2FutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Service2FutureStub>() {
+        @java.lang.Override
+        public Service2FutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Service2FutureStub(channel, callOptions);
+        }
+      };
+    return Service2FutureStub.newStub(factory, channel);
   }
 
   /**
@@ -125,7 +132,7 @@ public final class Service2Grpc {
      */
     public void logIn(ds.service2.LogInRequest request,
         io.grpc.stub.StreamObserver<ds.service2.LogInResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getLogInMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getLogInMethod(), responseObserver);
     }
 
     /**
@@ -135,21 +142,21 @@ public final class Service2Grpc {
      */
     public io.grpc.stub.StreamObserver<ds.service2.updateProfileRequest> updateProfile(
         io.grpc.stub.StreamObserver<ds.service2.updateProfileResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getUpdateProfileMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getUpdateProfileMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getLogInMethod(),
-            asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
                 ds.service2.LogInRequest,
                 ds.service2.LogInResponse>(
                   this, METHODID_LOG_IN)))
           .addMethod(
             getUpdateProfileMethod(),
-            asyncClientStreamingCall(
+            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
               new MethodHandlers<
                 ds.service2.updateProfileRequest,
                 ds.service2.updateProfileResponse>(
@@ -160,19 +167,15 @@ public final class Service2Grpc {
 
   /**
    */
-  public static final class Service2Stub extends io.grpc.stub.AbstractStub<Service2Stub> {
-    private Service2Stub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service2Stub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service2Stub extends io.grpc.stub.AbstractAsyncStub<Service2Stub> {
+    private Service2Stub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service2Stub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service2Stub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service2Stub(channel, callOptions);
     }
 
@@ -183,7 +186,7 @@ public final class Service2Grpc {
      */
     public void logIn(ds.service2.LogInRequest request,
         io.grpc.stub.StreamObserver<ds.service2.LogInResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getLogInMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -194,26 +197,22 @@ public final class Service2Grpc {
      */
     public io.grpc.stub.StreamObserver<ds.service2.updateProfileRequest> updateProfile(
         io.grpc.stub.StreamObserver<ds.service2.updateProfileResponse> responseObserver) {
-      return asyncClientStreamingCall(
+      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
           getChannel().newCall(getUpdateProfileMethod(), getCallOptions()), responseObserver);
     }
   }
 
   /**
    */
-  public static final class Service2BlockingStub extends io.grpc.stub.AbstractStub<Service2BlockingStub> {
-    private Service2BlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service2BlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service2BlockingStub extends io.grpc.stub.AbstractBlockingStub<Service2BlockingStub> {
+    private Service2BlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service2BlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service2BlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service2BlockingStub(channel, callOptions);
     }
 
@@ -223,26 +222,22 @@ public final class Service2Grpc {
      * </pre>
      */
     public ds.service2.LogInResponse logIn(ds.service2.LogInRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getLogInMethod(), getCallOptions(), request);
     }
   }
 
   /**
    */
-  public static final class Service2FutureStub extends io.grpc.stub.AbstractStub<Service2FutureStub> {
-    private Service2FutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Service2FutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Service2FutureStub extends io.grpc.stub.AbstractFutureStub<Service2FutureStub> {
+    private Service2FutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Service2FutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Service2FutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Service2FutureStub(channel, callOptions);
     }
 
@@ -253,7 +248,7 @@ public final class Service2Grpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ds.service2.LogInResponse> logIn(
         ds.service2.LogInRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getLogInMethod(), getCallOptions()), request);
     }
   }

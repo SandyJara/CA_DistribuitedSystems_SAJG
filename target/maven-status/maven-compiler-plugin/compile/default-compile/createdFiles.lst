@@ -12,6 +12,8 @@ ds\service1\Service1Grpc.class
 ds\service3\Service3Impl$1.class
 ds\service1\ControlResponseOrBuilder.class
 ds\service3\Service3Grpc$Service3FutureStub.class
+ds\service3\Service3Grpc$3.class
+ds\service1\ServiceRegistration1.class
 ds\service1\Service1Grpc$Service1FutureStub.class
 ds\service1\LightResponse.class
 ds\client\GuiCA$4.class
@@ -31,6 +33,7 @@ ds\service2\LogInResponseOrBuilder.class
 ds\service3\SearchBookRequest$1.class
 ds\service2\LogInRequestOrBuilder.class
 ds\service1\Service1$1.class
+ds\service1\Service1Grpc$3.class
 ds\service3\ReserveBookRequest$Builder.class
 ds\service3\Service3Grpc$Service3MethodDescriptorSupplier.class
 generated\ds\service1\Service1Grpc$MethodHandlers.class
@@ -51,12 +54,14 @@ ds\service1\client1.class
 ds\service3\Service3Grpc$1.class
 ds\service3\Service3.class
 ds\service1\ControlRequest$Builder.class
+ds\service1\ServiceDiscovery1$SampleListener.class
 ds\client\GuiCA$7.class
 ds\service2\Service2Grpc$Service2ImplBase.class
 ds\service2\Service2Impl.class
 generated\ds\service1\Service1Impl$1.class
 ds\service2\updateProfileResponse.class
 ds\service2\LogInRequest$1.class
+ds\service2\Service2Grpc$3.class
 ds\client\GuiCA$6.class
 ds\service2\updateProfileRequest$1.class
 ds\service2\Service2Impl$1.class
@@ -64,6 +69,7 @@ ds\service3\SearchBookResponse.class
 ds\service2\updateProfileRequest$Builder.class
 ds\service2\updateProfileResponse$Builder.class
 generated\ds\service1\Service1Grpc$Service1Stub.class
+ds\service3\Service3Grpc$2.class
 ds\service1\LightResponse$Builder.class
 ds\service1\Service1.class
 ds\service2\Service2Grpc.class
@@ -75,6 +81,7 @@ generated\ds\service1\LightRequest.class
 generated\ds\service1\LightResponse$1.class
 ds\service2\Service2Grpc$Service2FutureStub.class
 ds\service2\LogInResponse.class
+ds\service2\Service2Grpc$2.class
 ds\service3\Service3Grpc$Service3ImplBase.class
 generated\ds\service1\LightResponse$Builder.class
 ds\service2\Service2Grpc$Service2FileDescriptorSupplier.class
@@ -88,10 +95,12 @@ ds\service2\Service2Grpc$Service2Stub.class
 ds\service1\LightRequest$Builder.class
 generated\ds\service1\Service1Grpc$Service1BlockingStub.class
 ds\client\GuiCA.class
+ds\service1\Service1Grpc$2.class
 generated\ds\service1\LightRequest$1.class
 generated\ds\service1\LightResponse.class
 ds\service2\Service2Grpc$MethodHandlers.class
 ds\service3\Service3Grpc$Service3FileDescriptorSupplier.class
+ds\service1\ServiceDiscovery1.class
 generated\ds\service1\ControlResponse$Builder.class
 ds\service3\ReserveBookRequestOrBuilder.class
 ds\service3\SearchBookRequest$Builder.class

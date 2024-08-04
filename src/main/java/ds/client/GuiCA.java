@@ -21,6 +21,7 @@ import ds.service2.updateProfileRequest;
 import ds.service2.updateProfileResponse;
 import ds.service1.ControlRequest;
 import ds.service1.ControlResponse;
+import ds.service1.ServiceDiscovery1;
 import io.grpc.stub.StreamObserver;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -45,18 +46,30 @@ public class GuiCA extends JFrame {
 	private JTextField textField_address;
 	private JTextField textField_phone;
 	private JTextField textField_statusProfileToUpdate;
-	private JTextField textField_UpdateResponse;
-    private static client2 client2; // Declare static / instantiate when is needed
-    private static client1 client1; // same as above
-    private static client3 client3; // same as above
+	private JTextField textField_UpdateResponse;   
     private JPasswordField passwordField; 
     private JList<String> genreList;
     private JButton Button_SearchBook;
     private JTextField textField_SearchResults;
     
+    
+    private client1 client1 = new client1(); // Instantiate client1
+    private client2 client2 = new client2(); // Instantiate client2
+    private client3 client3 = new client3(); // Instantiate client3
 	/**
 	 * Launch the application.
 	 */
+    
+    // Variables for my host and port (comming from the discovery)
+    private String host;
+    private int port;
+    
+    private ServiceDiscovery1 discovery = new ServiceDiscovery1(); // Instantiate service discovery
+
+    /**
+     * Launch the application.
+     */
+    
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -75,6 +88,8 @@ public class GuiCA extends JFrame {
 	 */
 	public GuiCA() {
 		
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 684, 728);
 		contentPane = new JPanel();
@@ -83,6 +98,26 @@ public class GuiCA extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
+		
+		// For my discovery service to get the host and port
+        new Thread(() -> {
+            try {
+                discovery.discoverService1();
+                host = discovery.getHost();
+                port = discovery.getPort();
+                if (host == null || port == 0) {
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Service discovery failed.", "Error", JOptionPane.ERROR_MESSAGE));
+                } else {
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Service discovered at host: " + host + ", port: " + port, "Discovery Success", JOptionPane.INFORMATION_MESSAGE));
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    		
+		
 		
 		JLabel lblNewLabel = new JLabel("SERVICE 1");
 		lblNewLabel.setForeground(new Color(128, 0, 0));
@@ -106,18 +141,7 @@ public class GuiCA extends JFrame {
 		ButtonTemperature.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-		             //   textField_Temperature.setText("Hola");    I used this just to test at the beginning
-				new Thread(() -> {
-                    
-						try {
-							  String response = client1.startTemperatureControl();
-		                        textField_Temperature.setText("Action from server received: " + response);						} catch (InterruptedException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace(); //eclipse helped my to correct using try/catch 
-						}                                       
-                }).start();
-				
+		
 			}
 		});
 		ButtonTemperature.setBackground(new Color(168, 51, 159));
@@ -125,11 +149,22 @@ public class GuiCA extends JFrame {
 		ButtonTemperature.setBounds(197, 35, 85, 21);
 		contentPane.add(ButtonTemperature);
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		JButton TurnOn = new JButton("TURN ON");
 		TurnOn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String host = discovery.getHost();
+				int port = discovery.getPort();
 				// Call the static method to control lights and get the result
-                String result = client1.controlLights(true); // Turn on the lights, i had before in client public static void instead of public static string, and that why i got the error before
+                String result = client1.controlLights(host, port, true);  // Turn on the lights, i had before in client public static void instead of public static string, and that why i got the error before
 
                 // Update the JTextField with the result
                 textField_turnON.setText(result); // Display result in the text field
@@ -151,6 +186,7 @@ public class GuiCA extends JFrame {
 		textField_Temperature.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		textField_Temperature.setColumns(10);
 		textField_Temperature.setBounds(316, 23, 333, 49);
+		textField_Temperature.setText(""); //to fix an error i was getting: Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException: target
 		contentPane.add(textField_Temperature);
 		
 		JLabel lblNewLabel_3 = new JLabel("Temperature Control");
@@ -296,8 +332,10 @@ public class GuiCA extends JFrame {
 		turnOff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				String host = discovery.getHost();
+				int port = discovery.getPort();
 				// Call the static method to control lights and get the result
-                String result = client1.controlLights(false); // Turn on the lights, i had before in client public static void instead of public static string, and that why i got the error before
+                String result = client1.controlLights(host, port, false); // Turn on the lights, i had before in client public static void instead of public static string, and that why i got the error before
 
                 // Update the JTextField with the result
                 textField_turnON.setText(result); // Display result in the text field
