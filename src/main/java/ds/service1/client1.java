@@ -157,4 +157,13 @@ public class client1 {
 	            logger.log(Level.SEVERE, "Error during gRPC operations: ", e);
 	        }
 	    }
+
+
+		public String controlTemperature(String host, int port) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+		
 }

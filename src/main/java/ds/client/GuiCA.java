@@ -137,22 +137,34 @@ public class GuiCA extends JFrame {
 		lblNewLabel_2.setBounds(33, 466, 98, 13);
 		contentPane.add(lblNewLabel_2);
 		
+	
+		
 		JButton ButtonTemperature = new JButton("START");
 		ButtonTemperature.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-		
-			}
+				String host = discovery.getHost();
+				int port = discovery.getPort();
+				// Call the static method to control lights and get the result
+                String result = null;
+				try {
+					result = client1.startTemperatureControl(host, port);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}  // Turn on the lights, i had before in client public static void instead of public static string, and that why i got the error before
+
+                // Update the JTextField with the result
+                textField_Temperature.setText(result); // Display result in the text field
+            }
 		});
+		
+		
+		
+		
 		ButtonTemperature.setBackground(new Color(168, 51, 159));
 		ButtonTemperature.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		ButtonTemperature.setBounds(197, 35, 85, 21);
 		contentPane.add(ButtonTemperature);
-		
-		
-		
-		
-		
 		
 		
 		
