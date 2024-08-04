@@ -3,6 +3,7 @@ package ds.service2;
 
 import java.io.IOException;
 
+import ds.service1.Service1;
 import ds.service2.LogInRequest;
 import ds.service2.LogInResponse;
 import ds.service2.Service2Grpc.Service2ImplBase; 
@@ -12,23 +13,37 @@ import io.grpc.stub.StreamObserver;
 
 
 public class Service2 extends Service2ImplBase{
+	  private Server server;
 
+	    public void startMe() {
+	        try {
+	            int port = 50052;
+	            server = ServerBuilder.forPort(port)
+	                    .addService(this)
+	                    .build()
+	                    .start();
+	            System.out.println("Service-2 started, listening on " + port);
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    public void stopMe() {
+	        if (server != null) {
+	            server.shutdown();
+	        }
+	    }
+		
 
 
 	public static void main(String[] args) throws InterruptedException, IOException {
+		
 		Service2 service2 = new Service2();
-
-		int port = 50052;
-
-		Server server = ServerBuilder.forPort(port)
-				.addService(service2)
-				.build()
-				.start();
-
-		System.out.println("Service-2 started, listening on " + port);
-
-		server.awaitTermination();
+		service2.startMe();
+        service2.server.awaitTermination();
+		
 	}
+
 
 @Override 
 	public void logIn(LogInRequest request, StreamObserver<LogInResponse> responseObserver) {
