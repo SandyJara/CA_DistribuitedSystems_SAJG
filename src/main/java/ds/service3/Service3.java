@@ -14,7 +14,28 @@ import io.grpc.stub.StreamObserver;
 
 	
 	public class Service3 extends Service3ImplBase{
+		 private Server server;
 
+		    public void startMe() {
+		        try {
+		            int port = 50053;
+		            server = ServerBuilder.forPort(port)
+		                    .addService(this)
+		                    .build()
+		                    .start();
+		            System.out.println("Service-3 started, listening on " + port);
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+		    }
+
+		    public void stopMe() {
+		        if (server != null) {
+		            server.shutdown();
+		        }
+		    }
+		
+		
 		
 		private int reservationCounter = 1;
 		
