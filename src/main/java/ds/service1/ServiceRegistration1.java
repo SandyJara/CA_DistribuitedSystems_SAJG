@@ -20,7 +20,7 @@ public class ServiceRegistration1 {
          service1.startMe();  //NEEDED to start my service1
 
          // Register a service with the type _http._tcp.local.
-         ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "LIBRARY", 50051, "path=index.html");
+         ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "LIBRARY_S1", 50051, "path=index.html");
          jmdns.registerService(serviceInfo);
          System.out.println("Registered: " + InetAddress.getLocalHost() + ":" + serviceInfo.getPort());
 

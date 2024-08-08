@@ -15,7 +15,9 @@ import java.lang.System.Logger;
 import java.util.List;
 import java.awt.Color;
 import ds.service1.client1;//creating this and the next 3 lines to read my client1 class from the other package
+import ds.service2.ServiceDiscovery2;
 import ds.service2.client2;
+import ds.service3.ServiceDiscovery3;
 import ds.service3.client3;
 import ds.service2.updateProfileRequest;
 import ds.service2.updateProfileResponse;
@@ -64,7 +66,9 @@ public class GuiCA extends JFrame {
     private String host;
     private int port;
     
-    private ServiceDiscovery1 discovery = new ServiceDiscovery1(); // Instantiate service discovery
+    private ServiceDiscovery1 discovery = new ServiceDiscovery1(); // Instantiate service discovery 1
+    private ServiceDiscovery2 discovery2 = new ServiceDiscovery2(); // Instantiate service discovery 2
+    private ServiceDiscovery3 discovery3 = new ServiceDiscovery3(); // Instantiate service discovery 2
 
     /**
      * Launch the application.
@@ -101,12 +105,45 @@ public class GuiCA extends JFrame {
 		
 		
 		
-		// For my discovery service to get the host and port
+		// For my discovery service 1 to get the host and port
         new Thread(() -> {
             try {
                 discovery.discoverService1();
                 host = discovery.getHost();
                 port = discovery.getPort();
+                if (host == null || port == 0) {
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Service discovery failed.", "Error", JOptionPane.ERROR_MESSAGE));
+                } else {
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Service discovered at host: " + host + ", port: " + port, "Discovery Success", JOptionPane.INFORMATION_MESSAGE));
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        
+        
+     // For my discovery service 2 to get the host and port
+        new Thread(() -> {
+            try {
+                discovery2.discoverService2();
+                host = discovery2.getHost();
+                port = discovery2.getPort();
+                if (host == null || port == 0) {
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Service discovery failed.", "Error", JOptionPane.ERROR_MESSAGE));
+                } else {
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Service discovered at host: " + host + ", port: " + port, "Discovery Success", JOptionPane.INFORMATION_MESSAGE));
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        
+        // For my discovery service 3 to get the host and port
+        new Thread(() -> {
+            try {
+                discovery3.discoverService3();
+                host = discovery3.getHost();
+                port = discovery3.getPort();
                 if (host == null || port == 0) {
                     SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, "Service discovery failed.", "Error", JOptionPane.ERROR_MESSAGE));
                 } else {
@@ -212,6 +249,9 @@ public class GuiCA extends JFrame {
                 String name = nameField.getText();
                 String password = new String(passwordField.getPassword());
                 String status = null;
+                System.out.println("Name: " + name);
+                System.out.println("Password: " + password);
+                
 				try {
 					status = client2.logIn(name, password);
 				} catch (InterruptedException e1) {

@@ -55,7 +55,7 @@ public class client1 {
 
 	            @Override
 	            public void onError(Throwable t) {
-	                logger.log(Level.WARNING, "Temperature controle NOT POSSIBLE to execute", t);
+	                logger.log(Level.WARNING, "Temperature control NOT POSSIBLE to execute", t);
 	            }
 
 	            @Override

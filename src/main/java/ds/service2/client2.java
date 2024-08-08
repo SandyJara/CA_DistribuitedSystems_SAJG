@@ -1,7 +1,8 @@
 package ds.service2;
 
 
-	import java.util.List;
+	import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 	import java.util.logging.Level;
@@ -122,6 +123,14 @@ import java.util.concurrent.TimeUnit;
 				// TODO Auto-generated method stub
 				
 			}
+			
+	//code added to run my client2 class
+			public static void main(String[] args) throws InterruptedException {
+				String loginStatus = logIn("testUser", "testPassword");
+		        System.out.println("Login Status: " + loginStatus);
+		    }
+			
+			
 		}
 		     
 		   

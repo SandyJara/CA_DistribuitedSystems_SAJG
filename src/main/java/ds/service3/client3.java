@@ -138,7 +138,7 @@ package ds.service3;
 
 	            for (String book : booksToReserve) {
 	                ReserveBookRequest reserveRequest = ReserveBookRequest.newBuilder()
-	                        .setBookId(book) // Assuming book title as ID for simplicity
+	                        .setBookId(book) //name of book
 	                        .setUserId(userId)
 	                        .build();
 	                requestObserver.onNext(reserveRequest);
